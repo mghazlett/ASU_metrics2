@@ -1,0 +1,417 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2020.1.8)  8 JUN 2023 14:29
+entering extended mode
+**./AllFiguresRaw.tex
+(AllFiguresRaw.tex
+LaTeX2e <2018-12-01>
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/caption\caption.sty"
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/caption\caption3.sty"
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen105
+\captionmargin@=\dimen106
+\captionwidth=\dimen107
+\caption@tempdima=\dimen108
+\caption@indent=\dimen109
+\caption@parindent=\dimen110
+\caption@hangindent=\dimen111
+)
+\c@caption@flags=\count88
+\c@ContinuedFloat=\count89
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.sty"
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifvtex.sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count90
+\Gm@cntv=\count91
+\c@Gm@tempcnt=\count92
+\Gm@bindingoffset=\dimen112
+\Gm@wd@mp=\dimen113
+\Gm@odd@mp=\dimen114
+\Gm@even@mp=\dimen115
+\Gm@layoutwidth=\dimen116
+\Gm@layoutheight=\dimen117
+\Gm@layouthoffset=\dimen118
+\Gm@layoutvoffset=\dimen119
+\Gm@dimlist=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.cfg"))
+(AllFiguresRaw.aux)
+\openout1 = `AllFiguresRaw.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+
+("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count93
+\scratchdimen=\dimen120
+\scratchbox=\box27
+\nofMPsegments=\count94
+\nofMParguments=\count95
+\everyMPshowfont=\toks16
+\MPscratchCnt=\count96
+\MPscratchDim=\dimen121
+\MPnumerator=\count97
+\makeMPintoPDFobject=\count98
+\everyMPtoPDFconversion=\toks17
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+))))
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 443.57848pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 624.25346pt, 85.35826pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=443.57848pt
+* \textheight=624.25346pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-23.91173pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+<Figure1.pdf, id=1, 650.43pt x 433.62pt>
+File: Figure1.pdf Graphic file (type pdf)
+<use Figure1.pdf>
+Package pdftex.def Info: Figure1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 390.261pt x 260.17401pt.
+[1{C:/Users/funke/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./Figure1
+.pdf>]
+<Figure2.pdf, id=17, 1156.32pt x 722.7pt>
+File: Figure2.pdf Graphic file (type pdf)
+<use Figure2.pdf>
+Package pdftex.def Info: Figure2.pdf  used on input line 20.
+(pdftex.def)             Requested size: 404.71806pt x 252.94878pt.
+ [2 <./Figure2.pdf>]
+<Figure3.pdf, id=31, 397.485pt x 289.08pt>
+File: Figure3.pdf Graphic file (type pdf)
+<use Figure3.pdf>
+Package pdftex.def Info: Figure3.pdf  used on input line 27.
+(pdftex.def)             Requested size: 278.2376pt x 202.35461pt.
+ [3 <./Figure3.pdf>]
+<Figure4.pdf, id=41, 722.7pt x 361.35pt>
+File: Figure4.pdf Graphic file (type pdf)
+<use Figure4.pdf>
+Package pdftex.def Info: Figure4.pdf  used on input line 34.
+(pdftex.def)             Requested size: 433.62334pt x 216.81168pt.
+ [4 <./Figure4.pdf>]
+<Figure5.pdf, id=57, 722.7pt x 307.1475pt>
+File: Figure5.pdf Graphic file (type pdf)
+<use Figure5.pdf>
+Package pdftex.def Info: Figure5.pdf  used on input line 41.
+(pdftex.def)             Requested size: 433.62334pt x 184.28992pt.
+ [5 <./Figure5.pdf>]
+<Figure6.pdf, id=67, 653.44125pt x 454.69875pt>
+File: Figure6.pdf Graphic file (type pdf)
+<use Figure6.pdf>
+Package pdftex.def Info: Figure6.pdf  used on input line 48.
+(pdftex.def)             Requested size: 392.06776pt x 272.82135pt.
+ [6 <./Figure6.pdf>]
+<Figure7.pdf, id=76, 511.9125pt x 170.6375pt>
+File: Figure7.pdf Graphic file (type pdf)
+<use Figure7.pdf>
+Package pdftex.def Info: Figure7.pdf  used on input line 55.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [7 <./Figure7.pdf>]
+<Figure8.pdf, id=86, 511.9125pt x 170.6375pt>
+File: Figure8.pdf Graphic file (type pdf)
+<use Figure8.pdf>
+Package pdftex.def Info: Figure8.pdf  used on input line 62.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [8 <./Figure8.pdf>]
+<Figure9.pdf, id=95, 511.9125pt x 170.6375pt>
+File: Figure9.pdf Graphic file (type pdf)
+<use Figure9.pdf>
+Package pdftex.def Info: Figure9.pdf  used on input line 69.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [9 <./Figure9.pdf>]
+<Figure10.pdf, id=104, 511.9125pt x 170.6375pt>
+File: Figure10.pdf Graphic file (type pdf)
+<use Figure10.pdf>
+Package pdftex.def Info: Figure10.pdf  used on input line 76.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [10 <./Figure10.pdf>]
+<Figure11.pdf, id=113, 426.59375pt x 198.7425pt>
+File: Figure11.pdf Graphic file (type pdf)
+<use Figure11.pdf>
+Package pdftex.def Info: Figure11.pdf  used on input line 83.
+(pdftex.def)             Requested size: 341.27545pt x 158.9942pt.
+ [11 <./Figure11.pdf>]
+<Figure12.pdf, id=122, 511.9125pt x 170.6375pt>
+File: Figure12.pdf Graphic file (type pdf)
+<use Figure12.pdf>
+Package pdftex.def Info: Figure12.pdf  used on input line 90.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [12 <./Figure12.pdf>]
+<Figure13.pdf, id=131, 426.59375pt x 198.7425pt>
+File: Figure13.pdf Graphic file (type pdf)
+<use Figure13.pdf>
+Package pdftex.def Info: Figure13.pdf  used on input line 97.
+(pdftex.def)             Requested size: 341.27545pt x 158.9942pt.
+
+[13 <./Figure13.pdf>]
+<Figure14.pdf, id=141, 511.9125pt x 170.6375pt>
+File: Figure14.pdf Graphic file (type pdf)
+<use Figure14.pdf>
+Package pdftex.def Info: Figure14.pdf  used on input line 104.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [14 <./Figure14.pdf>]
+<FigureA1.pdf, id=150, 867.24pt x 289.08pt>
+File: FigureA1.pdf Graphic file (type pdf)
+<use FigureA1.pdf>
+Package pdftex.def Info: FigureA1.pdf  used on input line 111.
+(pdftex.def)             Requested size: 433.61894pt x 144.53964pt.
+ [15 <./FigureA1.pdf>]
+<FigureA2.pdf, id=164, 867.24pt x 289.08pt>
+File: FigureA2.pdf Graphic file (type pdf)
+<use FigureA2.pdf>
+Package pdftex.def Info: FigureA2.pdf  used on input line 118.
+(pdftex.def)             Requested size: 433.61894pt x 144.53964pt.
+ [16 <./FigureA2.pdf>]
+<FigureA3.pdf, id=178, 867.24pt x 289.08pt>
+File: FigureA3.pdf Graphic file (type pdf)
+<use FigureA3.pdf>
+Package pdftex.def Info: FigureA3.pdf  used on input line 125.
+(pdftex.def)             Requested size: 433.61894pt x 144.53964pt.
+ [17 <./FigureA3.pdf>]
+<FigureB1.pdf, id=192, 397.485pt x 794.97pt>
+File: FigureB1.pdf Graphic file (type pdf)
+<use FigureB1.pdf>
+Package pdftex.def Info: FigureB1.pdf  used on input line 132.
+(pdftex.def)             Requested size: 278.2376pt x 556.4752pt.
+<FigureB2.pdf, id=193, 653.44125pt x 454.69875pt>
+File: FigureB2.pdf Graphic file (type pdf)
+<use FigureB2.pdf>
+Package pdftex.def Info: FigureB2.pdf  used on input line 137.
+(pdftex.def)             Requested size: 392.06776pt x 272.82135pt.
+ [18 <./FigureB1.pdf>] [19 <./FigureB2.pdf>]
+<FigureB3.pdf, id=214, 867.24pt x 289.08pt>
+File: FigureB3.pdf Graphic file (type pdf)
+<use FigureB3.pdf>
+Package pdftex.def Info: FigureB3.pdf  used on input line 144.
+(pdftex.def)             Requested size: 433.61894pt x 144.53964pt.
+
+[20 <./FigureB3.pdf>]
+<FigureB4.pdf, id=228, 867.24pt x 650.43pt>
+File: FigureB4.pdf Graphic file (type pdf)
+<use FigureB4.pdf>
+Package pdftex.def Info: FigureB4.pdf  used on input line 151.
+(pdftex.def)             Requested size: 433.61894pt x 325.2142pt.
+ [21 <./FigureB4.pdf>]
+<FigureB5.pdf, id=245, 867.24pt x 650.43pt>
+File: FigureB5.pdf Graphic file (type pdf)
+<use FigureB5.pdf>
+Package pdftex.def Info: FigureB5.pdf  used on input line 158.
+(pdftex.def)             Requested size: 433.61894pt x 325.2142pt.
+ [22 <./FigureB5.pdf>]
+<FigureB6.pdf, id=262, 511.9125pt x 170.6375pt>
+File: FigureB6.pdf Graphic file (type pdf)
+<use FigureB6.pdf>
+Package pdftex.def Info: FigureB6.pdf  used on input line 165.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [23 <./FigureB6.pdf>]
+<FigureB7.pdf, id=271, 653.44125pt x 454.69875pt>
+File: FigureB7.pdf Graphic file (type pdf)
+<use FigureB7.pdf>
+Package pdftex.def Info: FigureB7.pdf  used on input line 172.
+(pdftex.def)             Requested size: 392.06776pt x 272.82135pt.
+ [24 <./FigureB7.pdf>]
+<FigureB8.pdf, id=280, 511.9125pt x 170.6375pt>
+File: FigureB8.pdf Graphic file (type pdf)
+<use FigureB8.pdf>
+Package pdftex.def Info: FigureB8.pdf  used on input line 179.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [25 <./FigureB8.pdf>]
+<FigureB9.pdf, id=290, 511.9125pt x 170.6375pt>
+File: FigureB9.pdf Graphic file (type pdf)
+<use FigureB9.pdf>
+Package pdftex.def Info: FigureB9.pdf  used on input line 186.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [26 <./FigureB9.pdf>]
+<FigureC1.pdf, id=299, 867.24pt x 650.43pt>
+File: FigureC1.pdf Graphic file (type pdf)
+<use FigureC1.pdf>
+Package pdftex.def Info: FigureC1.pdf  used on input line 193.
+(pdftex.def)             Requested size: 433.61894pt x 325.2142pt.
+
+[27 <./FigureC1.pdf>]
+<FigureC2.pdf, id=316, 397.485pt x 289.08pt>
+File: FigureC2.pdf Graphic file (type pdf)
+<use FigureC2.pdf>
+Package pdftex.def Info: FigureC2.pdf  used on input line 200.
+(pdftex.def)             Requested size: 317.98842pt x 231.2643pt.
+ [28 <./FigureC2.pdf>]
+<FigureC3.pdf, id=327, 426.59375pt x 198.7425pt>
+File: FigureC3.pdf Graphic file (type pdf)
+<use FigureC3.pdf>
+Package pdftex.def Info: FigureC3.pdf  used on input line 207.
+(pdftex.def)             Requested size: 341.27545pt x 158.9942pt.
+ [29 <./FigureC3.pdf>]
+<FigureC4.pdf, id=336, 511.9125pt x 170.6375pt>
+File: FigureC4.pdf Graphic file (type pdf)
+<use FigureC4.pdf>
+Package pdftex.def Info: FigureC4.pdf  used on input line 214.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [30 <./FigureC4.pdf>]
+<FigureC5.pdf, id=345, 426.59375pt x 198.7425pt>
+File: FigureC5.pdf Graphic file (type pdf)
+<use FigureC5.pdf>
+Package pdftex.def Info: FigureC5.pdf  used on input line 221.
+(pdftex.def)             Requested size: 341.27545pt x 158.9942pt.
+ [31 <./FigureC5.pdf>]
+<FigureC6.pdf, id=355, 511.9125pt x 170.6375pt>
+File: FigureC6.pdf Graphic file (type pdf)
+<use FigureC6.pdf>
+Package pdftex.def Info: FigureC6.pdf  used on input line 228.
+(pdftex.def)             Requested size: 409.53056pt x 136.51016pt.
+ [32 <./FigureC6.pdf>]
+<FigureC7.pdf, id=364, 578.16pt x 289.08pt>
+File: FigureC7.pdf Graphic file (type pdf)
+<use FigureC7.pdf>
+Package pdftex.def Info: FigureC7.pdf  used on input line 235.
+(pdftex.def)             Requested size: 404.70924pt x 202.35461pt.
+ [33 <./FigureC7.pdf>]
+(AllFiguresRaw.aux) ) 
+Here is how much of TeX's memory you used:
+ 3170 strings out of 492942
+ 50789 string characters out of 3135397
+ 114628 words of memory out of 3000000
+ 7039 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,6n,39p,282b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr10.pfb>
+Output written on AllFiguresRaw.pdf (33 pages, 955988 bytes).
+PDF statistics:
+ 383 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+

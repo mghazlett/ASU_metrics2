@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+
+\begin{table}[tbp] \centering
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\caption{TABLE 3}
+\begin{tabularx}{\linewidth}{lCCC}
+
+\toprule
+{Predictor}&{Treated}&{Synthetic}&{DonorPool} \tabularnewline
+\midrule \addlinespace[\belowrulesep]
+GDP&--0.110&--0.116&--0.180 \tabularnewline
+Institutions&--0.637&--0.528&--0.370 \tabularnewline
+Inflation&0.251&0.197&0.160 \tabularnewline
+Banking crises&0.375&0.371&0.203 \tabularnewline
+Sovereign debt crises&0.174&0.168&0.071 \tabularnewline
+\bottomrule 
+
+\end{tabularx}
+\end{table}
+\end{document}

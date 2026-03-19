@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+
+\begin{table}[tbp] \centering
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\caption{TABLE C6}
+\begin{tabularx}{\linewidth}{lC}
+
+\toprule
+{Outcome\_variable}&{Pvalue\_avg} \tabularnewline
+\midrule \addlinespace[\belowrulesep]
+GDP&0.21 \tabularnewline
+Gini&0.09 \tabularnewline
+Labor share&0.12 \tabularnewline
+Tariff rate&0.48 \tabularnewline
+Trade/GDP&0.25 \tabularnewline
+Financial globalisation index&0.13 \tabularnewline
+Debt/GDP&0.23 \tabularnewline
+Inflation&0.35 \tabularnewline
+Judicial constraints on executive index&0.21 \tabularnewline
+Free and fair elections index&0.27 \tabularnewline
+Media freedom index&0.34 \tabularnewline
+\bottomrule 
+
+\end{tabularx}
+\end{table}
+\end{document}
