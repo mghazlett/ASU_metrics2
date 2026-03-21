@@ -28,7 +28,6 @@ mata: mata mlib index
 
 qui do programs/datprep
 qui do programs/figtabs
-qui do programs/table1
 
 cd  programs
 
