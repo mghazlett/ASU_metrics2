@@ -1,0 +1,379 @@
+"country","iso","cid","cowcode","leader","start_yr","end_yr","tenure_yrs","regime_vdem_type","gwf_type","auth_yrs_vdem","is_also_populist"
+"Argentina","ARG",1,160,"Quintana",1904,1906,2,"Electoral autocracy",NA,3,FALSE
+"Argentina","ARG",1,160,"Alcorta",1906,1910,4,"Electoral autocracy",NA,5,FALSE
+"Argentina","ARG",1,160,"R.S. Pena",1910,1913,3,"Electoral autocracy",NA,4,FALSE
+"Argentina","ARG",1,160,"de la Plaza",1913,1916,3,"Electoral autocracy",NA,4,FALSE
+"Argentina","ARG",1,160,"Irigoyen",1916,1922,6,"Electoral autocracy",NA,7,TRUE
+"Argentina","ARG",1,160,"de Alvear",1922,1928,6,"Electoral autocracy",NA,7,FALSE
+"Argentina","ARG",1,160,"Irigoyen",1928,1930,2,"Electoral autocracy",NA,3,TRUE
+"Argentina","ARG",1,160,"J. Felix Uriburu",1930,1932,2,"Electoral autocracy",NA,3,TRUE
+"Argentina","ARG",1,160,"Justo",1932,1938,6,"Electoral autocracy",NA,7,FALSE
+"Argentina","ARG",1,160,"Ortiz",1938,1942,4,"Electoral autocracy",NA,5,FALSE
+"Argentina","ARG",1,160,"Farrell",1944,1946,2,"Closed autocracy","military",3,TRUE
+"Argentina","ARG",1,160,"Peron",1946,1955,9,"Electoral autocracy","military+personal",10,TRUE
+"Argentina","ARG",1,160,"Aramburu",1955,1958,3,"Closed autocracy","personal+military",4,FALSE
+"Argentina","ARG",1,160,"Frondizi",1958,1962,4,"Electoral autocracy","military+indirect military",5,FALSE
+"Argentina","ARG",1,160,"Arturo Illia",1963,1966,3,"Electoral autocracy","indirect military",2,FALSE
+"Argentina","ARG",1,160,"Ongania",1966,1970,4,"Closed autocracy","indirect military+military",5,FALSE
+"Argentina","ARG",1,160,"Lanusse",1971,1973,2,"Closed autocracy","military",3,TRUE
+"Argentina","ARG",1,160,"Videla",1976,1981,5,"Closed autocracy","military",6,TRUE
+"Austria","AUT",3,305,"Renner",1918,1920,2,"Electoral autocracy",NA,2,FALSE
+"Austria","AUT",3,305,"Dollfuss",1932,1934,2,"Closed autocracy",NA,2,FALSE
+"Austria","AUT",3,305,"Schuschnigg",1934,1938,4,"Closed autocracy",NA,5,FALSE
+"Belgium","BEL",4,211,"Von Bissing",1914,1917,3,"Closed autocracy",NA,4,FALSE
+"Belgium","BEL",4,211,"Delacroix",1918,1920,2,"Closed autocracy",NA,3,FALSE
+"Bolivia","BOL",5,145,"Montes",1904,1909,5,"Electoral autocracy",NA,6,FALSE
+"Bolivia","BOL",5,145,"Villazon",1909,1913,4,"Electoral autocracy",NA,5,FALSE
+"Bolivia","BOL",5,145,"Montes",1913,1917,4,"Electoral autocracy",NA,5,FALSE
+"Bolivia","BOL",5,145,"Gutierrez Guerra",1917,1920,3,"Electoral autocracy",NA,4,FALSE
+"Bolivia","BOL",5,145,"Saavedra",1920,1925,5,"Electoral autocracy",NA,6,FALSE
+"Bolivia","BOL",5,145,"Siles",1926,1930,4,"Electoral autocracy",NA,5,FALSE
+"Bolivia","BOL",5,145,"Salamanca",1931,1934,3,"Electoral autocracy",NA,4,FALSE
+"Bolivia","BOL",5,145,"Tejada Sorzano",1934,1936,2,"Closed autocracy",NA,3,FALSE
+"Bolivia","BOL",5,145,"Busch, G.",1937,1939,2,"Closed autocracy",NA,3,FALSE
+"Bolivia","BOL",5,145,"Penaranda",1940,1943,3,"Electoral autocracy",NA,4,FALSE
+"Bolivia","BOL",5,145,"Villarroel",1943,1946,3,"Closed autocracy","party-military",4,FALSE
+"Bolivia","BOL",5,145,"Herzog",1947,1949,2,"Closed autocracy","oligarchy",3,FALSE
+"Bolivia","BOL",5,145,"Urriolagoitia",1949,1951,2,"Closed autocracy","oligarchy",3,FALSE
+"Bolivia","BOL",5,145,"Paz Estenssoro",1952,1956,4,"Electoral autocracy","military+party-based",5,TRUE
+"Bolivia","BOL",5,145,"Siles Zuazo",1956,1960,4,"Electoral autocracy","party-based",5,TRUE
+"Bolivia","BOL",5,145,"Paz Estenssoro",1960,1964,4,"Electoral autocracy","party-based",5,TRUE
+"Bolivia","BOL",5,145,"Barrientos Ortuna",1964,1966,2,"Closed autocracy","party-based+personal",3,FALSE
+"Bolivia","BOL",5,145,"Barrientos Ortuna",1966,1969,3,"Electoral autocracy","personal",4,FALSE
+"Bolivia","BOL",5,145,"Banzer Suarez",1971,1978,7,"Closed autocracy","military+military-personal",8,FALSE
+"Bolivia","BOL",5,145,"Siles Zuazo",1982,1985,3,"Closed autocracy","military",4,FALSE
+"Brazil","BRA",6,140,"Rodriguez Alves",1902,1906,4,"Electoral autocracy",NA,5,FALSE
+"Brazil","BRA",6,140,"Moreira Penna",1906,1909,3,"Electoral autocracy",NA,4,FALSE
+"Brazil","BRA",6,140,"H. R. da Fonseca",1910,1914,4,"Electoral autocracy",NA,5,FALSE
+"Brazil","BRA",6,140,"Braz Pereira Gomez",1914,1918,4,"Electoral autocracy",NA,5,FALSE
+"Brazil","BRA",6,140,"de Silva Pessoa",1919,1922,3,"Electoral autocracy",NA,4,FALSE
+"Brazil","BRA",6,140,"de Silva Bernar",1922,1926,4,"Electoral autocracy",NA,5,FALSE
+"Brazil","BRA",6,140,"de Souza",1926,1930,4,"Electoral autocracy",NA,5,FALSE
+"Brazil","BRA",6,140,"Vargas",1930,1945,15,"Closed autocracy",NA,16,TRUE
+"Brazil","BRA",6,140,"Dutra",1946,1951,5,"Closed autocracy",NA,6,FALSE
+"Brazil","BRA",6,140,"Vargas",1951,1954,3,"Electoral autocracy",NA,4,TRUE
+"Brazil","BRA",6,140,"Kubitschek",1956,1961,5,"Electoral autocracy",NA,6,FALSE
+"Brazil","BRA",6,140,"Goulart",1961,1964,3,"Electoral autocracy",NA,4,FALSE
+"Brazil","BRA",6,140,"Castello Branco",1964,1967,3,"Closed autocracy","military",4,FALSE
+"Brazil","BRA",6,140,"Costa de Silva",1967,1969,2,"Closed autocracy","military",3,FALSE
+"Brazil","BRA",6,140,"Medici",1969,1974,5,"Closed autocracy","military",6,FALSE
+"Brazil","BRA",6,140,"Geisel",1974,1979,5,"Closed autocracy","military",6,FALSE
+"Brazil","BRA",6,140,"Figueiredo",1979,1985,6,"Closed autocracy","military",7,FALSE
+"Brazil","BRA",6,140,"Sarnay",1985,1990,5,"Electoral autocracy","military",2,FALSE
+"Bulgaria","BGR",7,355,"Boris III",1918,1943,25,"Closed autocracy",NA,26,FALSE
+"Bulgaria","BGR",7,355,"Georgiev",1944,1946,2,"Closed autocracy","party-based",3,FALSE
+"Bulgaria","BGR",7,355,"Georgi Dimitrov",1946,1949,3,"Closed autocracy","party-based",4,FALSE
+"Bulgaria","BGR",7,355,"Chervenkov",1950,1956,6,"Closed autocracy","party-based",7,FALSE
+"Bulgaria","BGR",7,355,"Zhivkov",1956,1989,33,"Closed autocracy","party-based",34,FALSE
+"Canada","CAN",8,20,"Borden",1911,1920,9,"Electoral autocracy",NA,10,FALSE
+"Chile","CHL",9,155,"Riesco Errazuriz",1901,1906,5,"Electoral autocracy",NA,6,FALSE
+"Chile","CHL",9,155,"P. Montt",1906,1910,4,"Electoral autocracy",NA,5,FALSE
+"Chile","CHL",9,155,"Lucco",1911,1915,4,"Electoral autocracy",NA,5,FALSE
+"Chile","CHL",9,155,"Sanfuentes",1915,1920,5,"Electoral autocracy",NA,6,FALSE
+"Chile","CHL",9,155,"Alessandri y Palma",1920,1924,4,"Electoral autocracy",NA,5,TRUE
+"Chile","CHL",9,155,"Figueroa Larrain",1925,1927,2,"Electoral autocracy",NA,3,FALSE
+"Chile","CHL",9,155,"Ibanez del Campo",1927,1931,4,"Closed autocracy",NA,5,FALSE
+"Chile","CHL",9,155,"Alessandri y Palma",1932,1938,6,"Electoral autocracy",NA,7,FALSE
+"Chile","CHL",9,155,"Aguirre Cerda",1938,1941,3,"Electoral autocracy",NA,4,FALSE
+"Chile","CHL",9,155,"Rios Morales",1942,1946,4,"Electoral autocracy",NA,5,FALSE
+"Chile","CHL",9,155,"Gonzalez Videla",1946,1952,6,"Electoral autocracy",NA,7,FALSE
+"Chile","CHL",9,155,"Ibanez Campo",1952,1958,6,"Electoral autocracy",NA,7,FALSE
+"Chile","CHL",9,155,"Pinochet",1973,1990,17,"Closed autocracy","military-personal",17,FALSE
+"China","CHN",10,710,"Zaifeng",1908,1911,3,"Closed autocracy",NA,4,FALSE
+"China","CHN",10,710,"Yuan Shih-kai",1912,1916,4,"Closed autocracy",NA,5,FALSE
+"China","CHN",10,710,"Hsu Shih-ch'ang",1918,1922,4,"Closed autocracy",NA,5,FALSE
+"China","CHN",10,710,"Tuan Chi-jui",1924,1926,2,"Closed autocracy",NA,3,FALSE
+"China","CHN",10,710,"Chang Tso-lin",1926,1928,2,"Closed autocracy",NA,3,FALSE
+"China","CHN",10,710,"Chiang Kai-shek",1928,1937,9,"Closed autocracy",NA,10,FALSE
+"China","CHN",10,710,"Wang Kemin",1937,1940,3,"Closed autocracy",NA,4,FALSE
+"China","CHN",10,710,"Wang Jingwei",1940,1944,4,"Closed autocracy",NA,5,FALSE
+"China","CHN",10,710,"Chiang Kai-shek",1946,1949,3,"Closed autocracy",NA,4,FALSE
+"China","CHN",10,710,"Mao Tse-Tung",1949,1976,27,"Closed autocracy","party-based",28,FALSE
+"China","CHN",10,710,"Hua Guofeng",1976,1980,4,"Closed autocracy","party-based",5,FALSE
+"China","CHN",10,710,"Deng Xiaoping",1980,1997,17,"Closed autocracy","party-based",18,FALSE
+"China","CHN",10,710,"Jiang Zemin",1997,2003,6,"Closed autocracy","party-based",7,FALSE
+"China","CHN",10,710,"Hu Jintao",2003,2012,9,"Closed autocracy","party-based",10,FALSE
+"China","CHN",10,710,"Xi Jinping",2012,2015,3,"Closed autocracy",NA,4,FALSE
+"China","CHN",10,710,"Xi",2012,2025,13,"Closed autocracy",NA,14,FALSE
+"Colombia","COL",11,100,"Marroquin",1900,1904,4,"Closed autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Reyes Prieto",1904,1909,5,"Closed autocracy",NA,6,FALSE
+"Colombia","COL",11,100,"Restropo",1910,1914,4,"Closed autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Concha",1914,1918,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Suarez",1918,1921,3,"Electoral autocracy",NA,4,FALSE
+"Colombia","COL",11,100,"Nel Ospina",1922,1926,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Abadia Mendez",1926,1930,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Olaya Herrera",1930,1934,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Lopez Pumarejo",1934,1938,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Santos",1938,1942,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Lopez Pumarejo",1942,1945,3,"Electoral autocracy",NA,4,FALSE
+"Colombia","COL",11,100,"Ospina Perez",1946,1950,4,"Electoral autocracy","party-based",5,FALSE
+"Colombia","COL",11,100,"Roberto Urdaneta Arbelaez",1951,1953,2,"Electoral autocracy","party-based",3,FALSE
+"Colombia","COL",11,100,"Rojas Pinillia",1953,1957,4,"Electoral autocracy","party-based+military-personal",5,FALSE
+"Colombia","COL",11,100,"Lleras Camargo",1958,1962,4,"Electoral autocracy","military-personal",5,FALSE
+"Colombia","COL",11,100,"Guillermo-Leon",1962,1966,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Lleras Restropo",1966,1970,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Pastrana Borrero",1970,1974,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Lopez Michelsen",1974,1978,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Turbay",1978,1982,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Betancur",1982,1986,4,"Electoral autocracy",NA,5,FALSE
+"Colombia","COL",11,100,"Vargas",1986,1990,4,"Electoral autocracy",NA,5,FALSE
+"Croatia","HRV",12,344,"Tudjman",1990,1999,9,"Closed autocracy",NA,9,FALSE
+"Cyprus","CYP",13,352,"Makarios",1960,1974,14,"Electoral autocracy",NA,15,FALSE
+"Ecuador","ECU",16,130,"Plaza Gutierrez",1901,1905,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Aloy Alfaro Delgado",1906,1911,5,"Closed autocracy",NA,6,FALSE
+"Ecuador","ECU",16,130,"Plaza Gutierrez",1912,1916,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Alfredo Baquerizo Moreno",1916,1920,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Tamayo",1920,1924,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Ayora",1925,1931,6,"Electoral autocracy",NA,7,FALSE
+"Ecuador","ECU",16,130,"Paez",1935,1937,2,"Closed autocracy",NA,3,TRUE
+"Ecuador","ECU",16,130,"Arroyo del Rio",1940,1944,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Velasco Ibarra",1944,1947,3,"Closed autocracy","personal",4,TRUE
+"Ecuador","ECU",16,130,"Plaza Lasso",1948,1952,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Velasco Ibarra",1952,1956,4,"Electoral autocracy",NA,5,TRUE
+"Ecuador","ECU",16,130,"Ponce Enriquez",1956,1960,4,"Electoral autocracy",NA,5,FALSE
+"Ecuador","ECU",16,130,"Arosemena Monroy",1961,1963,2,"Electoral autocracy",NA,3,TRUE
+"Ecuador","ECU",16,130,"Castro",1963,1966,3,"Closed autocracy","military",4,FALSE
+"Ecuador","ECU",16,130,"Arosemena Gomez",1966,1968,2,"Closed autocracy","military",3,TRUE
+"Ecuador","ECU",16,130,"Velasco Ibarra",1968,1972,4,"Closed autocracy","personal",5,TRUE
+"Ecuador","ECU",16,130,"Rodriguez Lara",1972,1976,4,"Closed autocracy","personal+military",5,FALSE
+"Ecuador","ECU",16,130,"Poveda Burbano",1976,1979,3,"Closed autocracy","military",4,FALSE
+"Egypt","EGY",17,651,"Fuad I",1922,1936,14,"Closed autocracy",NA,15,FALSE
+"Egypt","EGY",17,651,"Farouk",1936,1952,16,"Closed autocracy","monarchy",17,FALSE
+"Egypt","EGY",17,651,"Naguib",1952,1954,2,"Closed autocracy","monarchy+party-personal-military",3,FALSE
+"Egypt","EGY",17,651,"Nasser",1954,1970,16,"Closed autocracy","party-personal-military",17,FALSE
+"Egypt","EGY",17,651,"Sadat",1970,1981,11,"Closed autocracy","party-personal-military",12,FALSE
+"Egypt","EGY",17,651,"Mubarak",1981,2011,30,"Electoral autocracy","party-personal-military",31,FALSE
+"Egypt","EGY",17,651,"el-Sisi",2014,2025,11,"Electoral autocracy",NA,12,FALSE
+"Estonia","EST",18,366,"Pats",1933,1940,7,"Closed autocracy",NA,6,FALSE
+"Finland","FIN",19,375,"Ryti",1940,1944,4,"Electoral autocracy",NA,3,FALSE
+"France","FRA",20,220,"Petain",1940,1942,2,"Closed autocracy",NA,3,FALSE
+"France","FRA",20,220,"Laval",1942,1944,2,"Closed autocracy",NA,3,FALSE
+"France","FRA",20,220,"De Gaulle",1944,1946,2,"Closed autocracy",NA,3,FALSE
+"Germany","DEU",21,255,"Hitler",1933,1945,12,"Closed autocracy",NA,12,TRUE
+"Greece","GRC",22,350,"Konstantinos I",1913,1917,4,"Closed autocracy",NA,5,FALSE
+"Greece","GRC",22,350,"Venizelos",1917,1920,3,"Closed autocracy",NA,2,FALSE
+"Greece","GRC",22,350,"Konstantinos I",1920,1922,2,"Electoral autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Gonatas",1922,1924,2,"Closed autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Zaimis",1926,1928,2,"Electoral autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Venizelos",1928,1932,4,"Electoral autocracy",NA,5,FALSE
+"Greece","GRC",22,350,"Tsaldaris",1933,1935,2,"Closed autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Metaxas",1936,1941,5,"Closed autocracy",NA,6,FALSE
+"Greece","GRC",22,350,"Sophoulis",1947,1949,2,"Electoral autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Papagos",1952,1955,3,"Electoral autocracy",NA,4,FALSE
+"Greece","GRC",22,350,"Karamanlis",1955,1958,3,"Electoral autocracy",NA,4,FALSE
+"Greece","GRC",22,350,"Karamanlis",1958,1961,3,"Electoral autocracy",NA,4,FALSE
+"Greece","GRC",22,350,"Karamanlis",1961,1963,2,"Electoral autocracy",NA,3,FALSE
+"Greece","GRC",22,350,"Papadopoulos",1967,1973,6,"Closed autocracy","military",7,FALSE
+"Hungary","HUN",23,310,"Horthy",1920,1944,24,"Electoral autocracy",NA,25,FALSE
+"Hungary","HUN",23,310,"Rakoski",1945,1956,11,"Closed autocracy","party-based",12,FALSE
+"Hungary","HUN",23,310,"Kadar",1956,1988,32,"Closed autocracy","party-based",33,FALSE
+"Hungary","HUN",23,310,"Orban",2010,2025,15,"Electoral autocracy",NA,8,TRUE
+"India","IND",25,750,"Nehru",1947,1964,17,"Closed autocracy",NA,5,FALSE
+"India","IND",25,750,"Gandhi, I.",1966,1977,11,"Electoral autocracy",NA,3,TRUE
+"Indonesia","IDN",26,850,"Sukarno",1945,1948,3,"Closed autocracy",NA,4,TRUE
+"Indonesia","IDN",26,850,"Sukarno",1949,1966,17,"Closed autocracy","personal",16,FALSE
+"Indonesia","IDN",26,850,"Suharto",1966,1998,32,"Closed autocracy","personal+party-personal-military",33,FALSE
+"Ireland","IRL",27,205,"de Valera",1919,1921,2,"Closed autocracy",NA,3,FALSE
+"Italy","ITA",29,325,"Zanardelli",1901,1903,2,"Electoral autocracy",NA,3,FALSE
+"Italy","ITA",29,325,"Giolitti",1903,1905,2,"Electoral autocracy",NA,3,FALSE
+"Italy","ITA",29,325,"Giolitti",1906,1909,3,"Electoral autocracy",NA,4,FALSE
+"Italy","ITA",29,325,"Giolitti",1911,1914,3,"Electoral autocracy",NA,4,FALSE
+"Italy","ITA",29,325,"Salandra",1914,1916,2,"Electoral autocracy",NA,3,FALSE
+"Italy","ITA",29,325,"Orlando",1917,1919,2,"Electoral autocracy",NA,3,FALSE
+"Italy","ITA",29,325,"Mussolini",1922,1943,21,"Closed autocracy",NA,22,TRUE
+"Italy","ITA",29,325,"de Gasperi",1945,1953,8,"Closed autocracy",NA,2,FALSE
+"Japan","JPN",30,740,"Katsura",1901,1906,5,"Closed autocracy",NA,6,FALSE
+"Japan","JPN",30,740,"Saionji",1906,1908,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Katsura",1908,1911,3,"Closed autocracy",NA,4,FALSE
+"Japan","JPN",30,740,"Okuma",1914,1916,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Terauchi",1916,1918,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Hara, T.",1918,1921,3,"Closed autocracy",NA,4,FALSE
+"Japan","JPN",30,740,"Kato, Takaaki",1924,1926,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Tanaka, G.",1927,1929,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Saito, M.",1932,1934,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Okada",1934,1936,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Konoe, F.",1937,1939,2,"Closed autocracy",NA,3,FALSE
+"Japan","JPN",30,740,"Tojo",1941,1944,3,"Closed autocracy",NA,4,FALSE
+"Japan","JPN",30,740,"Douglas MacArthur",1945,1951,6,"Closed autocracy",NA,7,FALSE
+"Latvia","LVA",31,367,"Ulmanis",1919,1921,2,"Electoral autocracy",NA,2,FALSE
+"Latvia","LVA",31,367,"Meierovics",1921,1923,2,"Electoral autocracy",NA,2,FALSE
+"Latvia","LVA",31,367,"Ulmanis",1934,1940,6,"Closed autocracy",NA,6,FALSE
+"Lithuania","LTU",32,368,"Smetona",1918,1920,2,"Closed autocracy",NA,3,FALSE
+"Lithuania","LTU",32,368,"Smetona",1926,1940,14,"Closed autocracy",NA,13,FALSE
+"Malaysia","MYS",34,820,"Rahman",1957,1959,2,"Electoral autocracy","party-based",3,FALSE
+"Malaysia","MYS",34,820,"Rahman",1959,1970,11,"Closed autocracy","party-based",12,FALSE
+"Malaysia","MYS",34,820,"Razak",1970,1976,6,"Closed autocracy","party-based",7,FALSE
+"Malaysia","MYS",34,820,"Hussein Bin Onn",1976,1981,5,"Electoral autocracy","party-based",6,FALSE
+"Malaysia","MYS",34,820,"Mahatir Bin Mohammad",1981,2003,22,"Electoral autocracy","party-based",23,FALSE
+"Malaysia","MYS",34,820,"Ahmad Badawi",2003,2009,6,"Electoral autocracy","party-based",7,FALSE
+"Malaysia","MYS",34,820,"Najib Tun Razak",2009,2015,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Madero",1911,1913,2,"Closed autocracy",NA,3,FALSE
+"Mexico","MEX",36,70,"Carranza",1915,1920,5,"Closed autocracy",NA,6,FALSE
+"Mexico","MEX",36,70,"Obregon",1920,1924,4,"Electoral autocracy",NA,5,FALSE
+"Mexico","MEX",36,70,"Calles",1924,1928,4,"Electoral autocracy",NA,5,FALSE
+"Mexico","MEX",36,70,"Portes Gil",1928,1930,2,"Electoral autocracy",NA,3,FALSE
+"Mexico","MEX",36,70,"Ortiz Rubio",1930,1932,2,"Electoral autocracy",NA,3,FALSE
+"Mexico","MEX",36,70,"Rodriguez",1932,1934,2,"Electoral autocracy",NA,3,TRUE
+"Mexico","MEX",36,70,"Cardenas",1934,1940,6,"Electoral autocracy",NA,7,TRUE
+"Mexico","MEX",36,70,"Avila Camacho",1940,1946,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Aleman Valdes",1946,1952,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Ruiz Cortines",1952,1958,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Lopez Mateos",1958,1964,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Diaz Ordaz",1964,1970,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Echeverria Alvarez",1970,1976,6,"Electoral autocracy","party-based",7,TRUE
+"Mexico","MEX",36,70,"Lopez Portillo",1976,1982,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"de La Madrid",1982,1988,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Salinas",1988,1994,6,"Electoral autocracy","party-based",7,FALSE
+"Mexico","MEX",36,70,"Zedillo",1994,2000,6,"Electoral autocracy","party-based",2,FALSE
+"Netherlands","NLD",37,210,"Kuyper",1901,1905,4,"Electoral autocracy",NA,5,FALSE
+"Netherlands","NLD",37,210,"de Meester",1905,1908,3,"Electoral autocracy",NA,4,FALSE
+"Netherlands","NLD",37,210,"Heemskerk, T",1908,1913,5,"Electoral autocracy",NA,6,FALSE
+"Netherlands","NLD",37,210,"van der Linden",1913,1918,5,"Electoral autocracy",NA,5,FALSE
+"Norway","NOR",39,385,"Quisling",1940,1945,5,"Closed autocracy",NA,6,FALSE
+"Paraguay","PRY",40,150,"Escurra",1902,1904,2,"Closed autocracy",NA,3,FALSE
+"Paraguay","PRY",40,150,"Ferreira",1906,1908,2,"Closed autocracy",NA,3,FALSE
+"Paraguay","PRY",40,150,"Gonzalez Navero",1908,1910,2,"Closed autocracy",NA,3,FALSE
+"Paraguay","PRY",40,150,"Schaerer",1912,1916,4,"Closed autocracy",NA,5,FALSE
+"Paraguay","PRY",40,150,"Manuel Franco",1916,1919,3,"Closed autocracy",NA,4,FALSE
+"Paraguay","PRY",40,150,"Ayala Eusebio",1921,1923,2,"Closed autocracy",NA,3,FALSE
+"Paraguay","PRY",40,150,"Ayala Eligio",1924,1928,4,"Closed autocracy",NA,5,FALSE
+"Paraguay","PRY",40,150,"Guggiari",1928,1931,3,"Closed autocracy",NA,4,FALSE
+"Paraguay","PRY",40,150,"Ayala Eusebio",1932,1936,4,"Closed autocracy",NA,5,FALSE
+"Paraguay","PRY",40,150,"Paiva",1937,1939,2,"Closed autocracy",NA,3,FALSE
+"Paraguay","PRY",40,150,"Higinio Morínigo",1940,1948,8,"Closed autocracy","personal",9,FALSE
+"Paraguay","PRY",40,150,"Chavez",1949,1954,5,"Closed autocracy","party-based",6,FALSE
+"Paraguay","PRY",40,150,"Stroessner",1954,1989,35,"Closed autocracy","party-based+party-personal-military",36,FALSE
+"Paraguay","PRY",40,150,"Rodriguez Pedotti",1989,1993,4,"Electoral autocracy","party-personal-military",4,FALSE
+"Peru","PER",41,135,"Pardo y Barreda",1904,1908,4,"Electoral autocracy",NA,5,FALSE
+"Peru","PER",41,135,"Leguia",1908,1912,4,"Electoral autocracy",NA,5,FALSE
+"Peru","PER",41,135,"Billinghurst",1912,1914,2,"Electoral autocracy",NA,3,FALSE
+"Peru","PER",41,135,"Pardo y Barreda",1915,1919,4,"Electoral autocracy",NA,5,FALSE
+"Peru","PER",41,135,"Leguia",1919,1930,11,"Closed autocracy",NA,12,FALSE
+"Peru","PER",41,135,"Sanchez Cerro",1931,1933,2,"Closed autocracy",NA,3,FALSE
+"Peru","PER",41,135,"Benavidez",1933,1939,6,"Closed autocracy",NA,7,FALSE
+"Peru","PER",41,135,"Ugarteche",1939,1945,6,"Electoral autocracy",NA,7,FALSE
+"Peru","PER",41,135,"Bustamante",1945,1948,3,"Electoral autocracy",NA,4,FALSE
+"Peru","PER",41,135,"Odria",1948,1950,2,"Closed autocracy","military-personal",3,FALSE
+"Peru","PER",41,135,"Odria",1950,1956,6,"Closed autocracy","military-personal",7,FALSE
+"Peru","PER",41,135,"Ugarteche",1956,1962,6,"Electoral autocracy","military-personal",7,FALSE
+"Peru","PER",41,135,"Belaunde",1963,1968,5,"Electoral autocracy","military",6,FALSE
+"Peru","PER",41,135,"Velasco Alvarado",1968,1975,7,"Closed autocracy","military",8,FALSE
+"Peru","PER",41,135,"Morales Bermudez",1975,1980,5,"Closed autocracy","military",6,FALSE
+"Peru","PER",41,135,"Fujimori",1990,2000,10,"Closed autocracy","personal",9,FALSE
+"Philippines","PHL",42,840,"Roxas",1946,1948,2,"Electoral autocracy",NA,3,FALSE
+"Philippines","PHL",42,840,"Quirrino",1948,1953,5,"Electoral autocracy",NA,6,FALSE
+"Philippines","PHL",42,840,"Magsaysay",1953,1957,4,"Electoral autocracy",NA,5,FALSE
+"Philippines","PHL",42,840,"Garcia",1957,1961,4,"Electoral autocracy",NA,5,FALSE
+"Philippines","PHL",42,840,"Macapagal",1961,1965,4,"Electoral autocracy",NA,5,FALSE
+"Philippines","PHL",42,840,"Marcos",1965,1986,21,"Closed autocracy","personal",22,FALSE
+"Philippines","PHL",42,840,"Aquino",1986,1992,6,"Electoral autocracy","personal",2,FALSE
+"Philippines","PHL",42,840,"Gloria Macapagal-Arroyo",2001,2010,9,"Electoral autocracy",NA,6,FALSE
+"Poland","POL",43,290,"Pildsudski",1918,1922,4,"Closed autocracy",NA,2,FALSE
+"Poland","POL",43,290,"Pildsudski",1926,1935,9,"Closed autocracy",NA,10,FALSE
+"Poland","POL",43,290,"Smigly-Rydz",1935,1939,4,"Electoral autocracy",NA,4,FALSE
+"Poland","POL",43,290,"Bierut",1944,1956,12,"Closed autocracy","party-based",13,FALSE
+"Poland","POL",43,290,"Gomulka",1956,1970,14,"Closed autocracy","party-based",15,FALSE
+"Poland","POL",43,290,"Gierek",1970,1980,10,"Closed autocracy","party-based",11,FALSE
+"Poland","POL",43,290,"Jaruzelski",1981,1990,9,"Closed autocracy","party-based",9,FALSE
+"Portugal","PRT",44,235,"Manuel II",1908,1910,2,"Closed autocracy",NA,3,FALSE
+"Portugal","PRT",44,235,"Arriaga",1911,1915,4,"Electoral autocracy",NA,5,FALSE
+"Portugal","PRT",44,235,"Machado Guimaraes",1915,1917,2,"Closed autocracy",NA,3,FALSE
+"Portugal","PRT",44,235,"Almeida",1919,1923,4,"Electoral autocracy",NA,5,FALSE
+"Portugal","PRT",44,235,"Gomes",1923,1925,2,"Electoral autocracy",NA,3,FALSE
+"Portugal","PRT",44,235,"Carmona",1926,1932,6,"Closed autocracy",NA,7,FALSE
+"Portugal","PRT",44,235,"Salazar",1932,1968,36,"Closed autocracy","personal",37,FALSE
+"Portugal","PRT",44,235,"Caetano",1968,1974,6,"Closed autocracy","personal",7,FALSE
+"Portugal","PRT",44,235,"Costa Gomes",1974,1976,2,"Closed autocracy","personal",2,FALSE
+"Russia","RUS",46,365,"Lenin",1917,1923,6,"Closed autocracy",NA,7,FALSE
+"Russia","RUS",46,365,"Stalin",1923,1953,30,"Closed autocracy","party-based",31,FALSE
+"Russia","RUS",46,365,"Khrushchev",1953,1964,11,"Closed autocracy","party-based",12,FALSE
+"Russia","RUS",46,365,"Brezhnev",1964,1982,18,"Closed autocracy","party-based",19,FALSE
+"Russia","RUS",46,365,"Andropov",1982,1984,2,"Closed autocracy","party-based",3,FALSE
+"Russia","RUS",46,365,"Gorbachev",1985,1991,6,"Closed autocracy","party-based",7,FALSE
+"Russia","RUS",46,365,"Yeltsin",1991,1999,8,"Electoral autocracy","party-based+personal",9,FALSE
+"Russia","RUS",46,365,"Putin",2000,2015,15,"Electoral autocracy","personal",16,FALSE
+"Russia","RUS",46,365,"Putin",2012,2025,13,"Electoral autocracy",NA,14,FALSE
+"South Africa","ZAF",49,560,"Louis Botha",1910,1919,9,"Electoral autocracy",NA,10,FALSE
+"South Africa","ZAF",49,560,"Smuts",1919,1924,5,"Electoral autocracy",NA,6,FALSE
+"South Africa","ZAF",49,560,"Hertzog",1924,1939,15,"Electoral autocracy",NA,16,FALSE
+"South Africa","ZAF",49,560,"Smuts",1939,1948,9,"Electoral autocracy","oligarchy",10,FALSE
+"South Africa","ZAF",49,560,"Malan",1948,1954,6,"Electoral autocracy","oligarchy",7,FALSE
+"South Africa","ZAF",49,560,"Strijdom",1954,1958,4,"Electoral autocracy","oligarchy",5,FALSE
+"South Africa","ZAF",49,560,"Verwoerd",1958,1966,8,"Electoral autocracy","oligarchy",9,FALSE
+"South Africa","ZAF",49,560,"Vorster",1966,1978,12,"Electoral autocracy","oligarchy",13,FALSE
+"South Africa","ZAF",49,560,"Botha",1978,1989,11,"Closed autocracy","oligarchy",12,FALSE
+"South Africa","ZAF",49,560,"deKlerk",1989,1994,5,"Closed autocracy","oligarchy",6,FALSE
+"South Korea","KOR",50,732,"Rhee",1948,1960,12,"Electoral autocracy","personal",13,FALSE
+"South Korea","KOR",50,732,"Hee Park",1961,1979,18,"Electoral autocracy","military",19,FALSE
+"South Korea","KOR",50,732,"Chun Doo Hwan",1980,1988,8,"Electoral autocracy","military",8,FALSE
+"Spain","ESP",51,230,"Maura y Montaner",1907,1909,2,"Closed autocracy",NA,3,FALSE
+"Spain","ESP",51,230,"Canalejas y Mendez",1910,1912,2,"Closed autocracy",NA,3,FALSE
+"Spain","ESP",51,230,"Dato y Iradier",1913,1915,2,"Closed autocracy",NA,3,FALSE
+"Spain","ESP",51,230,"Figueroa y Torres",1915,1917,2,"Closed autocracy",NA,3,FALSE
+"Spain","ESP",51,230,"de Rivera",1923,1930,7,"Closed autocracy",NA,8,FALSE
+"Spain","ESP",51,230,"Negrin",1937,1939,2,"Closed autocracy",NA,3,FALSE
+"Spain","ESP",51,230,"Franco",1939,1975,36,"Closed autocracy","personal",37,FALSE
+"Spain","ESP",51,230,"Suarez Gonzalez",1976,1981,5,"Electoral autocracy","personal",2,FALSE
+"Sweden","SWE",52,380,"Otter",1900,1902,2,"Closed autocracy",NA,3,FALSE
+"Sweden","SWE",52,380,"Bostrom",1902,1905,3,"Closed autocracy",NA,4,FALSE
+"Sweden","SWE",52,380,"Lindman",1906,1911,5,"Closed autocracy",NA,6,FALSE
+"Sweden","SWE",52,380,"Staaf",1911,1914,3,"Closed autocracy",NA,4,FALSE
+"Sweden","SWE",52,380,"Hammarskjold",1914,1917,3,"Closed autocracy",NA,4,FALSE
+"Sweden","SWE",52,380,"Eden",1917,1920,3,"Electoral autocracy",NA,4,FALSE
+"Taiwan","TWN",54,713,"Chiang Kai-shek",1950,1975,25,"Closed autocracy","party-based",26,FALSE
+"Taiwan","TWN",54,713,"Yen Chia-Kan",1975,1978,3,"Closed autocracy","party-based",4,FALSE
+"Taiwan","TWN",54,713,"Chiang Ching-Kuo",1978,1988,10,"Closed autocracy","party-based",11,FALSE
+"Taiwan","TWN",54,713,"Lee Teng-Hui",1988,2000,12,"Closed autocracy","party-based",8,FALSE
+"Thailand","THA",55,800,"Rama VI",1910,1925,15,"Closed autocracy",NA,16,FALSE
+"Thailand","THA",55,800,"Rama VII",1925,1932,7,"Closed autocracy",NA,8,FALSE
+"Thailand","THA",55,800,"Phahon",1933,1938,5,"Electoral autocracy",NA,6,FALSE
+"Thailand","THA",55,800,"Plaek Pibulsongkram",1938,1944,6,"Electoral autocracy",NA,7,FALSE
+"Thailand","THA",55,800,"Pridi Banomyong",1944,1946,2,"Closed autocracy","personal",3,FALSE
+"Thailand","THA",55,800,"Plaek Pibulsongkram",1947,1957,10,"Closed autocracy","personal+military-personal",11,FALSE
+"Thailand","THA",55,800,"Sarit",1958,1963,5,"Closed autocracy","military-personal",6,FALSE
+"Thailand","THA",55,800,"Thanon Kittakachorn",1963,1973,10,"Closed autocracy","military-personal",11,FALSE
+"Thailand","THA",55,800,"Sanya",1973,1975,2,"Closed autocracy","military-personal",3,FALSE
+"Thailand","THA",55,800,"Kriangsak",1977,1980,3,"Closed autocracy","military-personal",4,FALSE
+"Thailand","THA",55,800,"Prem",1980,1988,8,"Electoral autocracy","military-personal",9,FALSE
+"Thailand","THA",55,800,"Choonhavan",1988,1991,3,"Closed autocracy","military-personal",4,FALSE
+"Thailand","THA",55,800,"Leekpai",1992,1995,3,"Electoral autocracy","military",4,FALSE
+"Thailand","THA",55,800,"Chulanont",2006,2008,2,"Closed autocracy","military",3,FALSE
+"Thailand","THA",55,800,"Vejjajiva",2008,2011,3,"Electoral autocracy",NA,4,FALSE
+"Thailand","THA",55,800,"Yingluck Shinawatra",2011,2014,3,"Closed autocracy",NA,4,FALSE
+"Turkey","TUR",56,640,"Mahmud Sefket Pasha",1909,1913,4,"Closed autocracy",NA,5,FALSE
+"Turkey","TUR",56,640,"Enver Pasha",1913,1918,5,"Closed autocracy",NA,6,FALSE
+"Turkey","TUR",56,640,"Mehmet VI Vahidettin",1918,1922,4,"Closed autocracy",NA,5,FALSE
+"Turkey","TUR",56,640,"Ataturk",1922,1938,16,"Closed autocracy",NA,17,FALSE
+"Turkey","TUR",56,640,"Inonu",1938,1950,12,"Closed autocracy","party-based",13,FALSE
+"Turkey","TUR",56,640,"Menderes",1950,1960,10,"Closed autocracy","party-based",11,FALSE
+"Turkey","TUR",56,640,"Inonu",1961,1965,4,"Closed autocracy","military",5,FALSE
+"Turkey","TUR",56,640,"Demirel",1965,1971,6,"Closed autocracy",NA,2,FALSE
+"Turkey","TUR",56,640,"Evren",1980,1983,3,"Closed autocracy","military",4,FALSE
+"Turkey","TUR",56,640,"Ozal",1983,1989,6,"Electoral autocracy","military",7,FALSE
+"Turkey","TUR",56,640,"Erdogan",2003,2015,12,"Electoral autocracy",NA,3,TRUE
+"Turkey","TUR",56,640,"Erdogan",2014,2025,11,"Electoral autocracy",NA,12,FALSE
+"United Kingdom","GBR",57,200,"Balfour",1902,1905,3,"Electoral autocracy",NA,4,FALSE
+"United Kingdom","GBR",57,200,"Campbell-Bannerman",1905,1908,3,"Electoral autocracy",NA,4,FALSE
+"United Kingdom","GBR",57,200,"Asquith",1908,1916,8,"Electoral autocracy",NA,9,FALSE
+"United Kingdom","GBR",57,200,"Lloyd-George",1916,1922,6,"Electoral autocracy",NA,3,FALSE
+"United States","USA",58,2,"Roosevelt, T.",1901,1909,8,"Electoral autocracy",NA,9,FALSE
+"United States","USA",58,2,"Taft",1909,1913,4,"Electoral autocracy",NA,5,FALSE
+"United States","USA",58,2,"Wilson",1913,1921,8,"Electoral autocracy",NA,7,FALSE
+"Uruguay","URY",59,165,"Jose Batlle y Ordonez",1903,1907,4,"Closed autocracy",NA,5,FALSE
+"Uruguay","URY",59,165,"Claudio Williman",1907,1911,4,"Closed autocracy",NA,5,FALSE
+"Uruguay","URY",59,165,"Jose Batlle y Ordonez",1911,1915,4,"Electoral autocracy",NA,5,FALSE
+"Uruguay","URY",59,165,"Feliciano Viera",1915,1919,4,"Electoral autocracy",NA,5,FALSE
+"Uruguay","URY",59,165,"Baltasar Brum",1919,1923,4,"Electoral autocracy",NA,4,FALSE
+"Uruguay","URY",59,165,"Terra",1931,1938,7,"Closed autocracy",NA,6,FALSE
+"Uruguay","URY",59,165,"Bordaberry",1972,1976,4,"Closed autocracy","military",5,FALSE
+"Uruguay","URY",59,165,"Mendez Manfredini",1976,1981,5,"Closed autocracy","military",6,FALSE
+"Uruguay","URY",59,165,"Alvarez Armalino",1981,1985,4,"Closed autocracy","military",4,FALSE
+"Venezuela","VEN",60,101,"Gomez",1908,1935,27,"Closed autocracy",NA,28,FALSE
+"Venezuela","VEN",60,101,"Lopez Contreras",1935,1941,6,"Closed autocracy",NA,7,FALSE
+"Venezuela","VEN",60,101,"Medina Angarita",1941,1945,4,"Closed autocracy",NA,5,FALSE
+"Venezuela","VEN",60,101,"Betancourt",1945,1948,3,"Closed autocracy",NA,4,FALSE
+"Venezuela","VEN",60,101,"Delgado Chalbaud",1948,1950,2,"Closed autocracy","military-personal",3,FALSE
+"Venezuela","VEN",60,101,"Perez Jimenez",1950,1958,8,"Closed autocracy","military-personal",9,FALSE
+"Venezuela","VEN",60,101,"Hugo Chavez",1999,2012,13,"Electoral autocracy","personal",11,TRUE
+"Venezuela","VEN",60,101,"Maduro",2012,2015,3,"Electoral autocracy",NA,4,TRUE
+"Venezuela","VEN",60,101,"Maduro",2013,2025,12,"Electoral autocracy",NA,13,TRUE

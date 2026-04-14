@@ -1,0 +1,24 @@
+# LaTeX aux files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# R workspace
+.RData
+.Rhistory
+Rplots.pdf
+
+# Stata temp
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# renv installed library (lockfile is enough)
+programs/renv/library/
+authpop_extension/programs/renv/library/

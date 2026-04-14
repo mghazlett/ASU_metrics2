@@ -1,0 +1,29 @@
+iso,year,leader,left,oid,nid,fr1,fr2,fr3,auth_strict,auth_broad,notes
+ARG,1946,Peron,1,1,1,0,7,15,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ARG,1973,Campora/Peron return,1,1,1,0,14,15,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ARG,1989,Menem,0,1,1,0,14,15,0,0,Electoral democracy at takeover
+ARG,2003,Kirchner N.,1,1,1,0,14,15,0,0,Electoral democracy at takeover
+BOL,1952,Paz Estenssoro,1,5,5,0,1,9,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+BRA,1951,Vargas,1,6,6,0,2,10,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+BRA,1990,Collor,0,6,6,0,14,15,0,0,Electoral democracy at takeover
+CHL,1952,Ibanez,1,9,8,0,1,9,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ECU,1952,Velasco Ibarra I,0,16,11,0,1,9,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ECU,1960,Velasco Ibarra II,0,16,11,1,14,15,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ECU,1968,Velasco Ibarra III,0,16,15,0,14,15,1,1,Electoral autocracy at takeover (V-Dem regime=1)
+ECU,1996,Bucaram,0,16,16,0,14,15,0,0,Electoral democracy at takeover
+IND,1966,Gandhi I.,1,25,22,0,14,15,0,1,Electoral democracy at takeover; became auth 1975 (Emergency; V-Dem regime=1)
+ISR,1996,Netanyahu,0,28,27,0,14,15,0,0,Liberal democracy at takeover and throughout
+ITA,1994,Berlusconi I,0,29,29,0,14,15,0,0,Liberal democracy at takeover and throughout
+ITA,2001,Berlusconi II,0,29,29,0,14,15,0,0,Liberal democracy at takeover and throughout
+JPN,2001,Koizumi,0,30,29,0,14,15,0,0,Liberal democracy at takeover and throughout
+MEX,1970,Echeverria,1,36,32,0,14,15,1,1,Electoral autocracy at takeover (PRI hegemonic; V-Dem regime=1)
+NZL,1975,Muldoon,0,38,34,0,14,15,0,0,Liberal democracy at takeover and throughout
+PER,1985,Garcia,1,41,38,0,14,15,0,0,Electoral democracy at takeover and throughout
+PER,1990,Fujimori,0,41,40,0,14,15,0,1,Electoral democracy at takeover; became auth 1992 (autogolpe; V-Dem regime=0)
+PHL,1998,Estrada,1,42,42,0,14,15,0,0,Electoral democracy at takeover and throughout
+KOR,2003,Roh,0,50,49,0,14,15,0,0,Liberal democracy at takeover and throughout
+SVK,1990,Meciar,0,47,45,10,14,15,0,0,Electoral democracy at takeover
+TWN,2000,Chen,0,54,54,0,14,15,0,0,Liberal democracy at takeover and throughout
+THA,2001,Thaksin,0,55,53,0,14,15,0,0,Electoral democracy throughout; country became auth after his removal by coup
+TUR,2003,Erdogan,0,56,53,0,14,15,0,1,Electoral democracy at takeover; became auth 2013 (V-Dem regime=1)
+VEN,1999,Chavez,1,60,59,0,14,15,0,1,Electoral democracy at takeover; became auth 2002 (V-Dem regime=1)

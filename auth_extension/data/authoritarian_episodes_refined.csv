@@ -1,0 +1,96 @@
+country,iso,cid,cowcode,leader,start_yr,end_yr,tenure_yrs,auth_type,gwf_type,regime_vdem_type,is_also_populist
+Argentina,ARG,1,160,Peron,1946,1955,9,Military-personal,military+personal,Electoral autocracy,1
+Argentina,ARG,1,160,Videla,1976,1981,5,Military,military,Closed autocracy,1
+Bolivia,BOL,5,145,Barrientos Ortuna,1964,1969,5,Personalist,party-based+personal,Electoral autocracy,0
+Bolivia,BOL,5,145,Banzer Suarez,1971,1978,7,Military-personal,military+military-personal,Closed autocracy,0
+Brazil,BRA,6,140,Vargas,1930,1945,15,Closed (unclassified),NA,Closed autocracy,1
+Brazil,BRA,6,140,Medici,1969,1974,5,Military,military,Closed autocracy,0
+Brazil,BRA,6,140,Geisel,1974,1979,5,Military,military,Closed autocracy,0
+Brazil,BRA,6,140,Figueiredo,1979,1985,6,Military,military,Closed autocracy,0
+Bulgaria,BGR,7,355,Boris III,1918,1943,25,Closed (unclassified),NA,Closed autocracy,0
+Bulgaria,BGR,7,355,Chervenkov,1950,1956,6,Single-party,party-based,Closed autocracy,0
+Bulgaria,BGR,7,355,Zhivkov,1956,1989,33,Single-party,party-based,Closed autocracy,0
+Chile,CHL,9,155,Pinochet,1973,1990,17,Military-personal,military-personal,Closed autocracy,0
+China,CHN,10,710,Chiang Kai-shek,1928,1937,9,Closed (unclassified),NA,Closed autocracy,0
+China,CHN,10,710,Mao Tse-Tung,1949,1976,27,Single-party,party-based,Closed autocracy,0
+China,CHN,10,710,Deng Xiaoping,1980,1997,17,Single-party,party-based,Closed autocracy,0
+China,CHN,10,710,Jiang Zemin,1997,2003,6,Single-party,party-based,Closed autocracy,0
+China,CHN,10,710,Hu Jintao,2003,2012,9,Single-party,party-based,Closed autocracy,0
+China,CHN,10,710,Xi,2012,2025,13,Closed (unclassified),NA,Closed autocracy,0
+Colombia,COL,11,100,Reyes Prieto,1904,1909,5,Closed (unclassified),NA,Closed autocracy,0
+Croatia,HRV,12,344,Tudjman,1990,1999,9,Closed (unclassified),NA,Closed autocracy,0
+Ecuador,ECU,16,130,Aloy Alfaro Delgado,1906,1911,5,Closed (unclassified),NA,Closed autocracy,0
+Egypt,EGY,17,651,Fuad I,1922,1936,14,Closed (unclassified),NA,Closed autocracy,0
+Egypt,EGY,17,651,Farouk,1936,1952,16,Monarchy,monarchy,Closed autocracy,0
+Egypt,EGY,17,651,Nasser,1954,1970,16,Military-personal,party-personal-military,Closed autocracy,0
+Egypt,EGY,17,651,Sadat,1970,1981,11,Military-personal,party-personal-military,Closed autocracy,0
+Egypt,EGY,17,651,Mubarak,1981,2011,30,Military-personal,party-personal-military,Electoral autocracy,0
+Estonia,EST,18,366,Pats,1933,1940,7,Closed (unclassified),NA,Closed autocracy,0
+Germany,DEU,21,255,Hitler,1933,1945,12,Closed (unclassified),NA,Closed autocracy,1
+Greece,GRC,22,350,Metaxas,1936,1941,5,Closed (unclassified),NA,Closed autocracy,0
+Greece,GRC,22,350,Papadopoulos,1967,1973,6,Military,military,Closed autocracy,0
+Hungary,HUN,23,310,Rakoski,1945,1956,11,Single-party,party-based,Closed autocracy,0
+Hungary,HUN,23,310,Kadar,1956,1988,32,Single-party,party-based,Closed autocracy,0
+Indonesia,IDN,26,850,Sukarno,1949,1966,17,Personalist,personal,Closed autocracy,0
+Indonesia,IDN,26,850,Suharto,1966,1998,32,Military-personal,personal+party-personal-military,Closed autocracy,0
+Italy,ITA,29,325,Mussolini,1922,1943,21,Closed (unclassified),NA,Closed autocracy,1
+Japan,JPN,30,740,Katsura,1901,1906,5,Closed (unclassified),NA,Closed autocracy,0
+Latvia,LVA,31,367,Ulmanis,1934,1940,6,Closed (unclassified),NA,Closed autocracy,0
+Lithuania,LTU,32,368,Smetona,1926,1940,14,Closed (unclassified),NA,Closed autocracy,0
+Malaysia,MYS,34,820,Rahman,1957,1970,13,Single-party,party-based,Closed autocracy,0
+Malaysia,MYS,34,820,Razak,1970,1976,6,Single-party,party-based,Closed autocracy,0
+Mexico,MEX,36,70,Carranza,1915,1920,5,Closed (unclassified),NA,Closed autocracy,0
+Paraguay,PRY,40,150,Higinio Morínigo,1940,1948,8,Personalist,personal,Closed autocracy,0
+Paraguay,PRY,40,150,Chavez,1949,1954,5,Single-party,party-based,Closed autocracy,0
+Paraguay,PRY,40,150,Stroessner,1954,1989,35,Military-personal,party-based+party-personal-military,Closed autocracy,0
+Peru,PER,41,135,Leguia,1919,1930,11,Closed (unclassified),NA,Closed autocracy,0
+Peru,PER,41,135,Benavidez,1933,1939,6,Closed (unclassified),NA,Closed autocracy,0
+Peru,PER,41,135,Odria,1948,1956,8,Military-personal,military-personal,Closed autocracy,0
+Peru,PER,41,135,Ugarteche,1956,1962,6,Military-personal,military-personal,Electoral autocracy,0
+Peru,PER,41,135,Velasco Alvarado,1968,1975,7,Military,military,Closed autocracy,0
+Peru,PER,41,135,Morales Bermudez,1975,1980,5,Military,military,Closed autocracy,0
+Peru,PER,41,135,Fujimori,1990,2000,10,Personalist,personal,Closed autocracy,0
+Philippines,PHL,42,840,Marcos,1965,1986,21,Personalist,personal,Closed autocracy,0
+Poland,POL,43,290,Pildsudski,1926,1935,9,Closed (unclassified),NA,Closed autocracy,0
+Poland,POL,43,290,Bierut,1944,1956,12,Single-party,party-based,Closed autocracy,0
+Poland,POL,43,290,Gomulka,1956,1970,14,Single-party,party-based,Closed autocracy,0
+Poland,POL,43,290,Gierek,1970,1980,10,Single-party,party-based,Closed autocracy,0
+Poland,POL,43,290,Jaruzelski,1981,1990,9,Single-party,party-based,Closed autocracy,0
+Portugal,PRT,44,235,Carmona,1926,1932,6,Closed (unclassified),NA,Closed autocracy,0
+Portugal,PRT,44,235,Salazar,1932,1968,36,Personalist,personal,Closed autocracy,0
+Portugal,PRT,44,235,Caetano,1968,1974,6,Personalist,personal,Closed autocracy,0
+Russia,RUS,46,365,Lenin,1917,1923,6,Closed (unclassified),NA,Closed autocracy,0
+Russia,RUS,46,365,Stalin,1923,1953,30,Single-party,party-based,Closed autocracy,0
+Russia,RUS,46,365,Khrushchev,1953,1964,11,Single-party,party-based,Closed autocracy,0
+Russia,RUS,46,365,Brezhnev,1964,1982,18,Single-party,party-based,Closed autocracy,0
+Russia,RUS,46,365,Gorbachev,1985,1991,6,Single-party,party-based,Closed autocracy,0
+Russia,RUS,46,365,Yeltsin,1991,1999,8,Personalist,party-based+personal,Electoral autocracy,0
+Russia,RUS,46,365,Putin,2000,2025,25,Personalist,personal,Electoral autocracy,0
+South Africa,ZAF,49,560,Botha,1978,1989,11,Oligarchy,oligarchy,Closed autocracy,0
+South Africa,ZAF,49,560,deKlerk,1989,1994,5,Oligarchy,oligarchy,Closed autocracy,0
+South Korea,KOR,50,732,Rhee,1948,1960,12,Personalist,personal,Electoral autocracy,0
+South Korea,KOR,50,732,Hee Park,1961,1979,18,Military,military,Electoral autocracy,0
+South Korea,KOR,50,732,Chun Doo Hwan,1980,1988,8,Military,military,Electoral autocracy,0
+Spain,ESP,51,230,de Rivera,1923,1930,7,Closed (unclassified),NA,Closed autocracy,0
+Spain,ESP,51,230,Franco,1939,1975,36,Personalist,personal,Closed autocracy,0
+Taiwan,TWN,54,713,Chiang Kai-shek,1950,1975,25,Single-party,party-based,Closed autocracy,0
+Taiwan,TWN,54,713,Chiang Ching-Kuo,1978,1988,10,Single-party,party-based,Closed autocracy,0
+Taiwan,TWN,54,713,Lee Teng-Hui,1988,2000,12,Single-party,party-based,Closed autocracy,0
+Thailand,THA,55,800,Rama VI,1910,1925,15,Closed (unclassified),NA,Closed autocracy,0
+Thailand,THA,55,800,Rama VII,1925,1932,7,Closed (unclassified),NA,Closed autocracy,0
+Thailand,THA,55,800,Plaek Pibulsongkram,1947,1957,10,Military-personal,personal+military-personal,Closed autocracy,0
+Thailand,THA,55,800,Sarit,1958,1963,5,Military-personal,military-personal,Closed autocracy,0
+Thailand,THA,55,800,Thanon Kittakachorn,1963,1973,10,Military-personal,military-personal,Closed autocracy,0
+Thailand,THA,55,800,Prem,1980,1988,8,Military-personal,military-personal,Electoral autocracy,0
+Turkey,TUR,56,640,Enver Pasha,1913,1918,5,Closed (unclassified),NA,Closed autocracy,0
+Turkey,TUR,56,640,Ataturk,1922,1938,16,Closed (unclassified),NA,Closed autocracy,0
+Turkey,TUR,56,640,Inonu,1938,1950,12,Single-party,party-based,Closed autocracy,0
+Turkey,TUR,56,640,Menderes,1950,1960,10,Single-party,party-based,Closed autocracy,0
+Turkey,TUR,56,640,Demirel,1965,1971,6,Closed (unclassified),NA,Closed autocracy,0
+Turkey,TUR,56,640,Ozal,1983,1989,6,Military,military,Electoral autocracy,0
+Uruguay,URY,59,165,Terra,1931,1938,7,Closed (unclassified),NA,Closed autocracy,0
+Uruguay,URY,59,165,Mendez Manfredini,1976,1981,5,Military,military,Closed autocracy,0
+Venezuela,VEN,60,101,Gomez,1908,1935,27,Closed (unclassified),NA,Closed autocracy,0
+Venezuela,VEN,60,101,Lopez Contreras,1935,1941,6,Closed (unclassified),NA,Closed autocracy,0
+Venezuela,VEN,60,101,Perez Jimenez,1950,1958,8,Military-personal,military-personal,Closed autocracy,0
+Venezuela,VEN,60,101,Hugo Chavez,1999,2012,13,Personalist,personal,Electoral autocracy,1
