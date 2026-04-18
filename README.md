@@ -25,13 +25,6 @@ ASU_metrics2/
 │   ├── adosw/                      Stata ado packages (Windows)
 │   └── adosm/                      Stata ado packages (Mac)
 │
-├── auth_extension/                 Extension: non-populist authoritarian leaders
-│   ├── README.md
-│   ├── data/                       Episode CSVs + auth_dataset.dta
-│   ├── figures/                    Figures A_3 through A_14
-│   ├── tables/                     Tables A_C1, A_C3
-│   └── programs/                   build_auth_episodes.R, datprep/figtabs/ranscm scripts
-│
 └── authpop_extension/              Extension: authoritarian-populist subset
     ├── README.md
     ├── sample_size_guide.md
@@ -41,22 +34,17 @@ ASU_metrics2/
     └── programs/                   datprep/figtabs/tableap3/ranscm scripts
 ```
 
-## What FST Found
+## FST - Populist Only
 
 Populist leaders reduce GDP per capita by ~10 percentage points relative to a
 synthetic control after 15 years. The effect holds for both left- and right-wing
 populists across 53 episodes, 1900-present.
 
-## Extensions
-
-**auth_extension:** Do non-populist authoritarian leaders cause similar damage?
-Answer: No — near-zero or modest negative GDP effects, substantially smaller than
-the FST populism finding. Personalist regimes drive what little negative signal exists.
+## AuthPop Extension
 
 **authpop_extension:** Is FST's effect concentrated in the authoritarian segment of
-their own sample? Answer: No — authoritarian-populist episodes show comparable negative
-effects to the FST full-sample benchmark, not larger ones. The economic damage is in
-the populist policy package, not the autocratic institutional setting.
+their own sample? My results say no: authoritarian-populist episodes show comparable negative effects to the FST full-sample benchmark and to the non-authoritarian populist 
+subset. 
 
 ## Software
 
