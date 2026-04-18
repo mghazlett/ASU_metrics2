@@ -16,8 +16,7 @@ This project asks whether the negative GDP effects documented by Funke, Schulari
 | figures/                | All output figures (PDF). See Section 6 for descriptions.                                                                                                           |
 | tables/                 | Output tables (LaTeX .tex). Table2_combined.tex is the main regression table; TableAP1_full.tex is the full episode list.                                           |
 | programs/               | All Stata do-files and the R script. See Section 4.                                                                                                                 |
-| run_authpop.bat         | One-click pipeline: runs all steps and compiles the PDF.                                                                                                            |
-| FST-Online-Appendix.pdf | FST (2023) online appendix, for reference.                                                                                                                          |
+| run_authpop.bat         | One-click pipeline: runs all steps and compiles the PDF.                                                                                                            |                                                         
 | sample_size_guide.md    | Explanation of why N varies across figures and subsets.                                                                                                             |
 
 **3\. Software Requirements**
