@@ -7,15 +7,17 @@
     auth_strict  = populist spells in electoral/closed autocracies at
                    takeover (V-Dem regime <= 1), N=9
     auth_broad   = strict + populists who became authoritarian during
-                   tenure (V-Dem crosses into regime <= 1), N=13
+                   tenure (V-Dem crosses into regime <= 1), N=14
   The no-Ecuador robustness subsets drop ECU episodes at the R/Stata stage.
 
   Also generates:
     atakeover_strict / atakeover_broad   — =1 at takeover year only
+    atakeover_nonauthpop                 — =1 at takeover year for non-authpop episodes (N=15)
     ltakeover_strict / rtakeover_strict  — left/right wing splits
     ltakeover_broad  / rtakeover_broad
     Post_5_strict  / Post_15_strict      — post-treatment window indicators
     Post_5_broad   / Post_15_broad
+    Post_5_nonauthpop / Post_15_nonauthpop
 
   Run from: C:\PLE\authpop_extension\
   (called by run_authpop.bat which sets the working directory)
@@ -60,6 +62,17 @@ foreach v of varlist auth_strict auth_broad authpop_left {
     replace `v' = 0 if missing(`v')
 }
 
+* Save original FST 28-episode takeover flag BEFORE adding Hungary/Orbán.
+* atakeover_full = 1 at the takeover year for all 28 FST analytical episodes.
+gen atakeover_full = atakeover
+
+* Episodes added to authpop_episodes.csv that are NOT in FST's 28 analytical
+* sample (e.g., Hungary/Orbán 2010) will have auth_broad=1 but atakeover=0
+* because atakeover comes from ple_dataset and only covers the original 28.
+* Fix: explicitly set atakeover=1 at the takeover year for all authpop episodes.
+replace atakeover = 1 if (auth_strict == 1 | auth_broad == 1) & atakeover == 0
+di "  HUN 2010 atakeover forced to 1 for new episodes not in FST's 28."
+
 * -------------------------------------------------------------------------
 * STEP 3: Verify episode counts
 * -------------------------------------------------------------------------
@@ -68,7 +81,10 @@ qui count if auth_strict == 1 & atakeover == 1
 di "  auth_strict takeover obs (expect 9):  " r(N)
 
 qui count if auth_broad == 1 & atakeover == 1
-di "  auth_broad  takeover obs (expect 13): " r(N)
+di "  auth_broad  takeover obs (expect 14): " r(N)
+
+qui count if auth_broad == 0 & atakeover == 1
+di "  nonauthpop  takeover obs (expect 15): " r(N)
 
 * -------------------------------------------------------------------------
 * STEP 4: Build atakeover indicators and left/right splits
@@ -76,8 +92,10 @@ di "  auth_broad  takeover obs (expect 13): " r(N)
 * episode (because the CSV has one row per episode and merged on iso+year).
 * -------------------------------------------------------------------------
 
-gen atakeover_strict = (auth_strict == 1 & atakeover == 1)
-gen atakeover_broad  = (auth_broad  == 1 & atakeover == 1)
+gen atakeover_strict    = (auth_strict == 1 & atakeover == 1)
+gen atakeover_broad     = (auth_broad  == 1 & atakeover == 1)
+* Non-authpop: FST's original 28 episodes that are not in the broad authpop subset
+gen atakeover_nonauthpop = (auth_broad == 0 & atakeover == 1)
 
 * Left/right splits (authpop_left from our CSV; ltakeover/rtakeover
 * in ple_dataset cover all 28 FST episodes — not what we want here)
@@ -93,20 +111,25 @@ gen rtakeover_broad  = (atakeover_broad  == 1 & authpop_left == 0)
 tsset cid year
 
 * Initialise
-foreach v in Post_5_strict Post_15_strict Post_5_broad Post_15_broad {
+foreach v in Post_5_strict Post_15_strict Post_5_broad Post_15_broad ///
+             Post_5_nonauthpop Post_15_nonauthpop Post_5_full Post_15_full {
     gen `v' = 0
 }
 
 * 5-year window (years 1-5 after takeover)
 forvalues h = 1/5 {
-    replace Post_5_strict = 1 if L`h'.atakeover_strict == 1
-    replace Post_5_broad  = 1 if L`h'.atakeover_broad  == 1
+    replace Post_5_strict       = 1 if L`h'.atakeover_strict       == 1
+    replace Post_5_broad        = 1 if L`h'.atakeover_broad        == 1
+    replace Post_5_nonauthpop   = 1 if L`h'.atakeover_nonauthpop   == 1
+    replace Post_5_full         = 1 if L`h'.atakeover_full         == 1
 }
 
 * 15-year window (years 1-15 after takeover)
 forvalues h = 1/15 {
-    replace Post_15_strict = 1 if L`h'.atakeover_strict == 1
-    replace Post_15_broad  = 1 if L`h'.atakeover_broad  == 1
+    replace Post_15_strict      = 1 if L`h'.atakeover_strict       == 1
+    replace Post_15_broad       = 1 if L`h'.atakeover_broad        == 1
+    replace Post_15_nonauthpop  = 1 if L`h'.atakeover_nonauthpop   == 1
+    replace Post_15_full        = 1 if L`h'.atakeover_full         == 1
 }
 
 * -------------------------------------------------------------------------
@@ -117,15 +140,21 @@ label var auth_strict       "=1 at takeover: auth-pop strict (autocracy at takeo
 label var auth_broad        "=1 at takeover: auth-pop broad (also became auth during tenure)"
 label var authpop_left      "=1 for left-wing auth-pop episodes (from authpop_episodes.csv)"
 label var atakeover_strict  "=1 at takeover year: strict subset (N=9 events)"
-label var atakeover_broad   "=1 at takeover year: broad subset (N=13 events)"
+label var atakeover_broad   "=1 at takeover year: broad subset (N=14 events)"
 label var ltakeover_strict  "=1 at takeover year: strict, left-wing"
 label var rtakeover_strict  "=1 at takeover year: strict, right-wing"
 label var ltakeover_broad   "=1 at takeover year: broad, left-wing"
 label var rtakeover_broad   "=1 at takeover year: broad, right-wing"
-label var Post_5_strict     "=1 years 1-5 after any strict authpop takeover"
-label var Post_15_strict    "=1 years 1-15 after any strict authpop takeover"
-label var Post_5_broad      "=1 years 1-5 after any broad authpop takeover"
-label var Post_15_broad     "=1 years 1-15 after any broad authpop takeover"
+label var atakeover_nonauthpop  "=1 at takeover year: non-authpop subset (N=15 events)"
+label var Post_5_strict         "=1 years 1-5 after any strict authpop takeover"
+label var Post_15_strict        "=1 years 1-15 after any strict authpop takeover"
+label var Post_5_broad          "=1 years 1-5 after any broad authpop takeover"
+label var Post_15_broad         "=1 years 1-15 after any broad authpop takeover"
+label var Post_5_nonauthpop     "=1 years 1-5 after any non-authpop takeover"
+label var Post_15_nonauthpop    "=1 years 1-15 after any non-authpop takeover"
+label var atakeover_full        "=1 at takeover year: FST full sample (N=28, excl. HUN)"
+label var Post_5_full           "=1 years 1-5 after any FST full-sample takeover"
+label var Post_15_full          "=1 years 1-15 after any FST full-sample takeover"
 
 compress
 save "data/authpop_dataset.dta", replace

@@ -1,13 +1,15 @@
 # ranscm_authpop.R
 # Authoritarian-Populist Subset Extension — Synthetic Control Estimation
 #
-# Replicates FST (2023) ranscm.R logic on four subsets drawn from the
-# original 28 populist episodes:
+# Replicates FST (2023) ranscm.R logic on six subsets drawn from the
+# original 28 populist episodes (plus Hungary/Orbán added to broad):
 #
-#   strict          — 9 episodes in electoral/closed autocracies at takeover
-#   broad           — 13 episodes (strict + became authoritarian during tenure)
+#   strict           — 9 episodes in electoral/closed autocracies at takeover
+#   broad            — 14 episodes (strict + became authoritarian during tenure + HUN)
 #   strict_noecuador — strict minus 3 Ecuador episodes (robustness check)
 #   broad_noecuador  — broad minus 3 Ecuador episodes (robustness check)
+#   nonauthpop       — 15 non-authoritarian populist episodes (pure_pop)
+#   fst_full         — all 28 original FST episodes (authpop + nonauthpop, excl. HUN)
 #
 # All SCM parameters are identical to FST ranscm.R.
 # Episode metadata (oid, nid, fr1/fr2/fr3) are read from authpop_episodes.csv.
@@ -20,12 +22,16 @@
 #   data/authpop_episodes.csv     — episode classification list
 #
 # Outputs (in figures/):
-#   FigureAP6_strict.pdf, FigureAP6_broad.pdf, FigureAP6_strict_noecuador.pdf, FigureAP6_broad_noecuador.pdf
-#   FigureAP7_*.pdf (sims=10 robustness)
-#   FigureAP8_*.pdf (augsynth, 10-period pre-window)
-#   FigureAP9_*.pdf (penalized SCM / LowRankQP)
-#   FigureAP10_*.pdf (pooled multisynth)
-#   FigureAP11_*.pdf through FigureAP14_*.pdf (alternative outcomes)
+#   FigureAP6_*.pdf  — main SCM, 15-year post window (6 subsets)
+#   FigureAP7_*.pdf  — main SCM, sims=10 robustness (6 subsets)
+#   FigureAP8_*.pdf  — main SCM, 5-year post window (6 subsets)
+#   FigureAP9.pdf    — three-group comparison: FST full / authpop broad / pure-pop
+#   FigureAP12_*.pdf through FigureAP14_*.pdf — alternative outcomes (4 subsets)
+#
+# Pre-period note: ep_period_pre = seq(0, fr3, 1) is episode-specific.
+# Early episodes (BOL/CHL/ECU 1952, BRA 1951) have fr3 < 15 due to
+# limited pre-treatment GDP data; using episode-specific pre-period
+# avoids a period overlap bug that caused those episodes to fail silently.
 
 # ============================================================
 # Setup
@@ -121,10 +127,10 @@ extract_ci <- function(result) {
 # SCM loop: run all episodes in ep_subset, return finaldata
 # ============================================================
 
-run_scm_subset <- function(ep_subset, subset_label) {
+run_scm_subset <- function(ep_subset, subset_label, post_years = 15) {
 
   n_ep <- nrow(ep_subset)
-  cat("\n--- Running subset:", subset_label, "(N =", n_ep, ") ---\n")
+  cat("\n--- Running subset:", subset_label, "(N =", n_ep, ", post_years =", post_years, ") ---\n")
 
   all_series <- list()
 
@@ -132,13 +138,19 @@ run_scm_subset <- function(ep_subset, subset_label) {
 
     ep   <- ep_subset[k, ]
     Oldc <- ep$oid
-    Trea <- ep$nid
     Year <- ep$year
     Left <- ep$left
     Case <- paste(ep$nid, ep$year, sep = ".")
     fr1  <- ep$fr1
     fr2  <- ep$fr2
     fr3  <- ep$fr3
+    fr4  <- if ("fr4" %in% names(ep) && !is.na(ep$fr4)) ep$fr4 else 30
+    # Episode-specific pre-period: ends at fr3 (not hardcoded 15)
+    # Fixes overlap bug for early episodes (BOL/CHL/ECU 1952, BRA 1951) where fr3 < 15
+    ep_period_pre  <- seq(0, fr3, 1)
+    # Episode-specific post window: post_years determines horizon (5 or 15)
+    ep_fr4_run     <- min(fr3 + post_years, fr4)   # cap at data availability
+    ep_period_post <- (fr3 + 1):ep_fr4_run
 
     cat("  [", k, "/", n_ep, "]", ep$iso, Year, ep$leader, "\n")
 
@@ -180,12 +192,15 @@ run_scm_subset <- function(ep_subset, subset_label) {
       data  <- transform(data, index = as.numeric(factor(country)))
       data  <- data %>% mutate(d = replace(d, war == 1, NA))
 
+      # Dynamic treated-unit index (robust to varying alphabetical ordering)
+      Trea <- data$index[data$cid == Oldc][1]
+
       # --- Fit SCM ---
       df <- scdata(
         df = data, features = features, constant = constant,
         cov.adj = cov.adj, cointegrated.data = cointegrated.data,
         id.var = "index", time.var = "t", outcome.var = "d",
-        period.pre = period.pre, period.post = period.post,
+        period.pre = ep_period_pre, period.post = ep_period_post,
         unit.tr = Trea, unit.co = unique(data$index)[-Trea]
       )
 
@@ -200,11 +215,11 @@ run_scm_subset <- function(ep_subset, subset_label) {
 
       # --- Extract results ---
       y.fit <- rbind(result$est.results$Y.pre.fit, result$est.results$Y.post.fit)
-      yfit  <- data.frame(t = c(fr1:fr2, fr3:30), yfit = c(y.fit))
+      yfit  <- data.frame(t = c(fr1:fr2, fr3:ep_fr4_run), yfit = c(y.fit))
 
       y.act <- rbind(result$data$Y.pre, result$data$Y.post)
       yact  <- data.frame(
-        t    = c(period.pre, period.post),
+        t    = c(ep_period_pre, ep_period_post),
         yact = c(y.act),
         case = Case,
         left = Left
@@ -215,7 +230,7 @@ run_scm_subset <- function(ep_subset, subset_label) {
       ci <- extract_ci(result)
       if (!is.null(ci)) {
         cis <- data.frame(
-          t            = period.post,
+          t            = ep_period_post,
           sclinsample  = c(ci$scl.insample),
           scrinsample  = c(ci$scr.insample),
           sclgauss     = c(ci$scl.gauss),
@@ -223,7 +238,7 @@ run_scm_subset <- function(ep_subset, subset_label) {
         )
       } else {
         cis <- data.frame(
-          t            = period.post,
+          t            = ep_period_post,
           sclinsample  = NA_real_,
           scrinsample  = NA_real_,
           sclgauss     = NA_real_,
@@ -493,8 +508,13 @@ subsets <- list(
   strict           = filter(episodes, auth_strict == 1),
   broad            = filter(episodes, auth_broad  == 1),
   strict_noecuador = filter(episodes, auth_strict == 1, iso != "ECU"),
-  broad_noecuador  = filter(episodes, auth_broad  == 1, iso != "ECU")
+  broad_noecuador  = filter(episodes, auth_broad  == 1, iso != "ECU"),
+  nonauthpop       = filter(episodes, auth_broad  == 0),
+  fst_full         = filter(episodes, !(iso == "HUN" & year == 2010))
 )
+
+# Store AP6 finaldata for comparison figure AP9
+finaldata_ap6 <- list()
 
 for (sname in names(subsets)) {
   ep_sub <- subsets[[sname]]
@@ -509,6 +529,9 @@ for (sname in names(subsets)) {
     cat("SKIPPED (no converged episodes)\n")
     next
   }
+
+  # Store for AP9 comparison figure
+  finaldata_ap6[[sname]] <- finaldata
 
   # Save finaldata as CSV for diagnostics
   write_csv(finaldata, file.path("data", paste0("scm_results_", sname, ".csv")))
@@ -555,125 +578,22 @@ for (sname in names(subsets)) {
 sims <- sims_saved   # restore
 
 # ============================================================
-# FIGURE AP8 — Augmented Synthetic Control (augsynth)
-# Uses Bhatt et al. augsynth package which augments the
-# traditional SCM with an outcome model ridge regression.
-# Pre-period 0:10 (not 0:15) — same as FST Figure 8.
-# Mirrors FST Figure 8.
+# FIGURE AP8 — Main SCM, 5-year post window
+# Motivated by Dornbusch & Edwards (1991): economic damage from
+# populist macro policy typically peaks in years 3-5. Authpop
+# strict leaders also have a median spell of 5 years, making
+# this the most policy-relevant horizon for that subset.
+# Same parameters as AP6 but ep_period_post truncated to 5 years.
 # ============================================================
 
-cat("\n\n========== FIGURE AP8 (augsynth) ==========\n")
-
-run_augsynth_subset <- function(ep_subset, subset_label) {
-  n_ep <- nrow(ep_subset)
-  cat("\n--- augsynth:", subset_label, "(N =", n_ep, ") ---\n")
-
-  period.pre.aug  <- seq(from = 0, to = 10, by = 1)
-  period.post.aug <- 11:30
-  all_series <- list()
-
-  for (k in seq_len(n_ep)) {
-    ep   <- ep_subset[k, ]
-    Oldc <- ep$oid
-    Trea <- ep$nid
-    Year <- ep$year
-    Left <- ep$left
-    Case <- paste(ep$nid, ep$year, sep = ".")
-    fr1  <- ep$fr1
-    fr2  <- min(ep$fr2, 10)   # augsynth uses 10-period pre-window
-    fr3  <- max(ep$fr3, 11)
-
-    cat("  [", k, "/", n_ep, "]", ep$iso, Year, "\n")
-
-    try({
-      data <- ple_data
-      data <- data[data$year >= Year - sta & data$year <= Year + 15, ]
-
-      taker  <- data %>% filter(cid == Oldc)
-      donors <- data %>% filter(cid != Oldc) %>%
-        mutate(simul = ifelse(atakeover == 1 & year == Year, 1, 0)) %>%
-        group_by(cid) %>% mutate(msimul = max(as.numeric(simul))) %>%
-        filter(msimul != 1) %>% select(-simul, -msimul)
-      data <- rbind(taker, donors)
-      data <- data %>% group_by(cid) %>%
-        filter(all(!is.na(fstgdp) | cid == Oldc))
-
-      data$lgfstgdp <- log(data$fstgdp)
-      tysub <- data[data$year == Year, c("cid", "country", "lgfstgdp")]
-      names(tysub)[names(tysub) == "lgfstgdp"] <- "ilgfstgdp"
-      data  <- merge(data, tysub)
-      data  <- data %>% group_by(cid) %>%
-        mutate(d = lgfstgdp - ilgfstgdp, t = year - Year + 15)
-      data  <- transform(data, index = as.numeric(factor(country)))
-      data  <- data %>% mutate(d = replace(d, war == 1, NA))
-
-      df <- scdata(
-        df = data, features = features, constant = constant,
-        cov.adj = cov.adj, cointegrated.data = cointegrated.data,
-        id.var = "index", time.var = "t", outcome.var = "d",
-        period.pre = period.pre.aug, period.post = period.post.aug,
-        unit.tr = Trea, unit.co = unique(data$index)[-Trea]
-      )
-      result <- scpi(
-        data = df, u.order = u.order, u.lags = u.lags,
-        u.sigma = u.sigma, u.missp = u.missp,
-        e.order = e.order, e.lags = e.lags,
-        u.alpha = u.alpha, e.alpha = e.alpha,
-        rho = rho, rho.max = rho.max, sims = sims,
-        w.constr = w.constr, cores = cores, e.method = e.method
-      )
-
-      y.fit <- rbind(result$est.results$Y.pre.fit, result$est.results$Y.post.fit)
-      t_pre_fit <- period.pre.aug[!is.na(c(result$data$Y.pre))]
-      yfit  <- data.frame(t = c(t_pre_fit, period.post.aug), yfit = c(y.fit))
-      y.act <- rbind(result$data$Y.pre, result$data$Y.post)
-      yact  <- data.frame(
-        t    = c(period.pre.aug, period.post.aug),
-        yact = c(y.act),
-        case = Case,
-        left = Left
-      )
-      ys <- merge(yact, yfit, by = "t", all = TRUE)
-
-      ci <- extract_ci(result)
-      if (!is.null(ci)) {
-        cis <- data.frame(
-          t            = period.post.aug,
-          sclinsample  = c(ci$scl.insample),
-          scrinsample  = c(ci$scr.insample),
-          sclgauss     = c(ci$scl.gauss),
-          scrgauss     = c(ci$scr.gauss)
-        )
-      } else {
-        cis <- data.frame(
-          t = period.post.aug,
-          sclinsample = NA_real_, scrinsample = NA_real_,
-          sclgauss    = NA_real_, scrgauss    = NA_real_
-        )
-      }
-      series <- merge(ys, cis, by = "t", all = TRUE)
-      all_series[[k]] <- series
-      cat("    OK\n")
-    })
-  }
-
-  all_series <- Filter(Negate(is.null), all_series)
-  if (length(all_series) == 0) return(NULL)
-
-  finaldata <- rbindlist(all_series, fill = TRUE)
-  finaldata <- finaldata %>% group_by(case) %>% mutate(ti = t - 15)
-  for (v in c("sclinsample","scrinsample","sclgauss","scrgauss"))
-    finaldata[[v]][finaldata$ti == 0] <- 0
-  finaldata$all   <- 1
-  finaldata$right <- ifelse(finaldata$left == 1, 0, 1)
-  finaldata
-}
+cat("\n\n========== FIGURE AP8 (5-year SCM) ==========\n")
 
 for (sname in names(subsets)) {
   ep_sub <- subsets[[sname]]
   cat("\nSubset:", sname, "(N =", nrow(ep_sub), ")\n")
 
-  finaldata <- run_augsynth_subset(ep_sub, sname)
+  finaldata <- run_scm_subset(ep_sub, paste0(sname, "_5yr"), post_years = 5)
+
   if (is.null(finaldata)) { cat("SKIPPED\n"); next }
 
   outpath <- file.path("figures", paste0("FigureAP8_", sname, ".pdf"))
@@ -683,342 +603,144 @@ for (sname in names(subsets)) {
   }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
 }
 
-# ============================================================
-# FIGURE AP9 — Penalized Synthetic Control (LowRankQP)
-# Cross-validates penalty parameter lambda over grid using
-# pre-treatment RMSE and bias. Plots results for three lambda
-# values: 0, 0.1, and optimal. Mirrors FST Figure 9.
-# ============================================================
-
-cat("\n\n========== FIGURE AP9 (penalized SCM) ==========\n")
-
-wsoll1 <- function(X0, X1, V, pen = 0.0) {
-  n     <- ncol(X0)
-  Delta <- diag(t(X0 - matrix(rep(1, n), ncol = n) %x% X1) %*% V %*%
-                (X0 - matrix(rep(1, n), ncol = n) %x% X1))
-  P     <- 2 * t(X0) %*% V %*% X0
-  q     <- t(-2 * t(X0) %*% V %*% X1 + pen * Delta)
-  sol   <- LowRankQP(Vmat = P, dvec = q,
-                     Amat = matrix(1, ncol = n), bvec = 1,
-                     uvec = rep(1, n), method = "LU")
-  sol$alpha
-}
-
-TZero <- function(x, tol = 1e-6, scale = TRUE) {
-  if (!all(x > 0)) stop("Some elements are negative!")
-  y <- ifelse(x < tol, 0, x)
-  if (scale) y <- y / sum(y)
-  y
-}
-
-regsynth <- function(X0, X1, Y0, Y1, V, pen, tol = 1e-6) {
-  sol <- wsoll1(X0, X1, V, pen)
-  sol <- TZero(sol, tol)
-  round(sol, 3)
-}
-
-lambda <- c(0, .00001, .01, .1, .15, seq(.25, 5, .1))
-
-run_pensynth_subset <- function(ep_subset, subset_label) {
-  n_ep <- nrow(ep_subset)
-  cat("\n--- pensynth:", subset_label, "(N =", n_ep, ") ---\n")
-
-  pdata <- ple_data
-  pdata$lgfstgdp <- log(pdata$fstgdp)
-  pdata <- pdata[which(pdata$year <= 1913 |
-                       (pdata$year >= 1919 & pdata$year <= 1938) |
-                        pdata$year >= 1946), ]
-
-  s <- ep_subset %>%
-    mutate(minus = -15, plus = 15) %>%
-    as.data.frame()
-  # Meciar 1990 (cid=47) special case
-  s$minus[s$oid == 47 & s$year == 1990] <- -5
-
-  curve_RMSE <- matrix(NA, nrow = n_ep, ncol = length(lambda))
-  curve_bias <- matrix(NA, nrow = n_ep, ncol = length(lambda))
-
-  for (l in seq_along(lambda)) {
-    for (k in seq_len(n_ep)) {
-      tryCatch({
-        i    <- s$oid[k]
-        date <- s$year[k]
-        other_pop <- s$oid[s$year == date & s$oid != i]
-        scm_data  <- pdata[pdata$year >= date + s$minus[k] &
-                             pdata$year <= date + s$plus[k], ]
-        scm_data  <- scm_data[!(scm_data$cid %in% other_pop), ]
-        na_cid    <- unique(scm_data$cid[is.na(scm_data$lgfstgdp)])
-        scm_data  <- scm_data[!(scm_data$cid %in% na_cid) | scm_data$cid == i, ]
-        scm_data  <- scm_data %>% group_by(cid) %>%
-          mutate(Y = lgfstgdp - lgfstgdp[which(year == date)])
-        scm_x <- scm_data[scm_data$year < date, c("cid", "year", "Y")]
-        scm_y <- scm_data[, c("cid", "year", "Y")]
-        scm_y_wide <- spread(scm_y, year, Y)
-        scm_x_wide <- dcast(setDT(scm_x), cid ~ year, value.var = "Y", sep = "")
-        X_0 <- t(as.matrix(scm_x_wide[scm_x_wide$cid != i, -1]))
-        X_1 <- as.numeric(t(as.matrix(scm_x_wide[scm_x_wide$cid == i, -1])))
-        Y_0 <- as.matrix(scm_y_wide[scm_y_wide$cid != i, -1])
-        Y_1 <- as.numeric(scm_y_wide[scm_y_wide$cid == i, -1])
-        V   <- diag(nrow(X_0))
-        W   <- regsynth(X_0, X_1, Y_0, Y_1, V, pen = lambda[l])
-        Y_0hat <- as.numeric(t(W) %*% Y_0)
-        times  <- as.numeric(colnames(scm_y_wide)[-1]) - date
-        tau    <- Y_1 - Y_0hat
-        tau_pre <- tau[times <= 0 & times >= -15]
-        curve_RMSE[k, l] <- sqrt(mean(tau_pre^2))
-        curve_bias[k, l] <- abs(mean(tau_pre))
-      }, error = function(e) NULL)
-    }
-  }
-
-  mean_RMSE     <- apply(curve_RMSE, 2, mean, na.rm = TRUE)
-  lambda_opt    <- min(lambda[which(mean_RMSE == min(mean_RMSE, na.rm = TRUE))])
-  lambda_final  <- c(0, 0.1, lambda_opt)
-
-  # Run final estimates for each lambda
-  all_runs <- list()
-
-  for (li in seq_along(lambda_final)) {
-    Y_synth <- data.frame()
-    for (k in seq_len(n_ep)) {
-      tryCatch({
-        i    <- s$oid[k]
-        date <- s$year[k]
-        Left <- s$left[k]
-        Case <- paste(s$nid[k], date, sep = ".")
-        other_pop <- s$oid[s$year == date & s$oid != i]
-        scm_data  <- pdata[pdata$year >= date + s$minus[k] &
-                             pdata$year <= date + s$plus[k], ]
-        scm_data  <- scm_data[!(scm_data$cid %in% other_pop), ]
-        na_cid    <- unique(scm_data$cid[is.na(scm_data$lgfstgdp)])
-        scm_data  <- scm_data[!(scm_data$cid %in% na_cid) | scm_data$cid == i, ]
-        scm_data  <- scm_data %>% group_by(cid) %>%
-          mutate(Y = lgfstgdp - lgfstgdp[which(year == date)])
-        scm_x <- scm_data[scm_data$year < date, c("cid", "year", "Y")]
-        scm_y <- scm_data[, c("cid", "year", "Y")]
-        scm_y_wide <- spread(scm_y, year, Y)
-        scm_x_wide <- dcast(setDT(scm_x), cid ~ year, value.var = "Y", sep = "")
-        X_0 <- t(as.matrix(scm_x_wide[scm_x_wide$cid != i, -1]))
-        X_1 <- as.numeric(t(as.matrix(scm_x_wide[scm_x_wide$cid == i, -1])))
-        Y_0 <- as.matrix(scm_y_wide[scm_y_wide$cid != i, -1])
-        Y_1 <- as.numeric(scm_y_wide[scm_y_wide$cid == i, -1])
-        V   <- diag(nrow(X_0))
-        W   <- regsynth(X_0, X_1, Y_0, Y_1, V, pen = lambda_final[li])
-        Y_0hat <- as.numeric(t(W) %*% Y_0)
-        times  <- as.numeric(colnames(scm_y_wide)[-1]) - date
-        df_k <- data.frame(
-          ti   = times,
-          yfit = Y_0hat,
-          yact = Y_1,
-          case = Case,
-          left = Left,
-          lam  = lambda_final[li]
-        )
-        Y_synth <- rbind(Y_synth, df_k)
-      }, error = function(e) NULL)
-    }
-    all_runs[[li]] <- Y_synth
-  }
-
-  list(all_runs = all_runs, lambda_final = lambda_final, n_ep = n_ep)
-}
-
-save_pensynth_figure <- function(outpath, pen_results, subset_label) {
-  all_runs     <- pen_results$all_runs
-  lambda_final <- pen_results$lambda_final
-  n_ep         <- pen_results$n_ep
-
-  panel_list <- list()
-  lam_labels <- c("No penalty (\u03BB=0)", "\u03BB=0.1", paste0("Optimal \u03BB=", round(lambda_final[3], 3)))
-
-  for (li in seq_along(lambda_final)) {
-    fd <- all_runs[[li]]
-    if (is.null(fd) || nrow(fd) == 0) { panel_list[[li]] <- ggplot() + labs(title = "No data"); next }
-
-    fd$all <- 1
-    avg_all <- ddply(fd[fd$all == 1, ], .(ti), summarise,
-                     yfit = mean(yfit, na.rm = TRUE),
-                     yact = mean(yact, na.rm = TRUE))
-    gap <- avg_all$yact - avg_all$yfit
-
-    p <- ggplot(avg_all) +
-      geom_line(aes(x = ti, y = yfit, colour = "Doppelganger avg.",
-                    linetype = "Doppelganger avg.", size = "Doppelganger avg.")) +
-      geom_line(aes(x = ti, y = yact, colour = "Auth-pop avg.",
-                    linetype = "Auth-pop avg.", size = "Auth-pop avg.")) +
-      scale_colour_manual(name = '', values = c("Auth-pop avg." = "blue",
-                                                 "Doppelganger avg." = "blue")) +
-      scale_linetype_manual(name = '', values = c("Auth-pop avg." = "solid",
-                                                   "Doppelganger avg." = "longdash")) +
-      scale_size_manual(name = '', values = c("Auth-pop avg." = 0.4,
-                                               "Doppelganger avg." = 0.4)) +
-      scale_x_continuous(breaks = seq(-15, 15, 5), expand = c(0.02, 0.02)) +
-      scale_y_continuous(limits = c(-0.40, 0.60),
-                         breaks = c(-0.4, -0.2, 0, 0.2, 0.4, 0.60),
-                         labels = c("-40%", "-20%", "0%", "+20%", "+40%", "+60%"),
-                         expand = c(0.02, 0.02)) +
-      geom_vline(xintercept = 0, linetype = "dashed", size = 0.2) +
-      labs(title = paste0(lam_labels[li], " (N=", n_ep, ")"), x = "", y = "") +
-      scm_theme()
-    panel_list[[li]] <- p
-  }
-
-  pdf(outpath, width = 23 / 2.54, height = 8 / 2.54)
-  grid::grid.newpage()
-  grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 3)))
-  for (li in 1:3) {
-    tryCatch(
-      print(panel_list[[li]], vp = grid::viewport(layout.pos.row = 1, layout.pos.col = li)),
-      error = function(e) NULL
-    )
-  }
-  dev.off()
-}
-
-for (sname in names(subsets)) {
-  ep_sub <- subsets[[sname]]
-  cat("\nSubset:", sname, "(N =", nrow(ep_sub), ")\n")
-  tryCatch({
-    pen_res <- run_pensynth_subset(ep_sub, sname)
-    outpath <- file.path("figures", paste0("FigureAP9_", sname, ".pdf"))
-    save_pensynth_figure(outpath, pen_res, sname)
-    cat("Saved:", outpath, "(", file.size(outpath), "bytes)\n")
-  }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
-}
+cat("\n=== Figure AP8 complete ===\n")
 
 # ============================================================
-# FIGURE AP10 — Pooled SCM / Augmented multisynth
-# Uses multisynth() from the augsynth package.
-# Creates pseudopanel for countries with multiple episodes
-# (Argentina has up to 2 episodes, Ecuador up to 3).
-# Mirrors FST Figure 10.
+# ============================================================
+# FIGURE AP9 — Four-group comparison (body figure)
+#
+# Main paper figure: plots average GDP gap (actual − doppelganger) for
+# four groups simultaneously. Each group's doppelganger is estimated
+# independently. Normalized to 0 at takeover year (ti = 0).
+# Groups:
+#   strict     (darkred / solid)    — 9 strict authpop episodes
+#   broad      (red / longdash)     — 14 broad authpop episodes
+#   nonauthpop (steelblue / dotdash)— 15 non-authoritarian populist episodes
+#   fst_full   (grey50 / twodash)   — all 28 original FST episodes
 # ============================================================
 
-cat("\n\n========== FIGURE AP10 (multisynth) ==========\n")
-
-run_multisynth_subset <- function(ep_subset, subset_label) {
-  n_ep <- nrow(ep_subset)
-  cat("\n--- multisynth:", subset_label, "(N =", n_ep, ") ---\n")
-
-  df_base <- ple_data[, c("country", "year", "cid")]
-  df_base$lgfstgdp <- log(ple_data$fstgdp)
-
-  # Build pseudopanel: for countries with multiple episodes,
-  # create duplicate rows with episode-specific country names
-  multi_countries <- ep_subset %>% group_by(iso) %>%
-    filter(n() > 1) %>% ungroup()
-
-  pseudo_list <- list(df_base)  # start with original data
-
-  if (nrow(multi_countries) > 0) {
-    for (k in seq_len(nrow(multi_countries))) {
-      ep    <- multi_countries[k, ]
-      # Find country name from ple_data
-      cname <- unique(ple_data$country[ple_data$cid == ep$oid])[1]
-      dup   <- df_base[df_base$country == cname, ]
-      dup$country <- paste0(cname, "_", ep$year)
-      pseudo_list[[length(pseudo_list) + 1]] <- dup
+# Helper: build comparison figure from a named list of group specs
+build_ap9_figure <- function(group_specs, title_str) {
+  gap_list <- list()
+  for (spec in group_specs) {
+    fd <- finaldata_ap6[[spec$key]]
+    if (is.null(fd)) {
+      cat("  Skipping", spec$key, "— no finaldata available\n")
+      next
     }
+    gd <- fd %>%
+      group_by(ti) %>%
+      dplyr::summarise(gap = mean(yact - yfit, na.rm = TRUE), .groups = "drop") %>%
+      mutate(group = spec$label)
+    gap_list[[spec$key]] <- gd
+    cat("  Built gap for", spec$key, ": ti range", min(gd$ti), "to", max(gd$ti), "\n")
   }
 
-  data <- do.call(rbind, pseudo_list)
-  data <- data %>% mutate(treatedyear = 0)
-
-  for (k in seq_len(n_ep)) {
-    ep    <- ep_subset[k, ]
-    cname <- unique(ple_data$country[ple_data$cid == ep$oid])[1]
-    # Check if this is a "duplicate" country (multi-episode)
-    is_multi <- nrow(ep_subset[ep_subset$iso == ep$iso, ]) > 1
-    if (is_multi) {
-      label <- paste0(cname, "_", ep$year)
-    } else {
-      label <- cname
-    }
-    data$treatedyear[data$country == label & data$year >= ep$year] <- 1
+  if (length(gap_list) < 2) {
+    cat("  Fewer than 2 groups available — skipping.\n")
+    return(NULL)
   }
 
-  tryCatch({
-    ppool_syn <- multisynth(lgfstgdp ~ treatedyear, country, year, data,
-                            fixedeff = TRUE, alpha = 0.1,
-                            n_lags = 15, n_leads = 16, nu = 0.5)
-    ppool <- data.frame(summary(ppool_syn)$att)
+  gap_all <- bind_rows(gap_list)
 
-    ppool <- ppool %>%
-      filter(!is.na(Time), !is.na(Estimate),
-             Time >= -15, Time <= 15,
-             Level != "Average")
+  # Build named aesthetic vectors from specs that actually appear in data
+  present_specs <- Filter(function(s) s$key %in% names(gap_list), group_specs)
+  col_vals  <- setNames(sapply(present_specs, `[[`, "col"),  sapply(present_specs, `[[`, "label"))
+  lty_vals  <- setNames(sapply(present_specs, `[[`, "lty"),  sapply(present_specs, `[[`, "label"))
+  size_vals <- setNames(rep(0.55, length(present_specs)),     sapply(present_specs, `[[`, "label"))
 
-    # Map levels back to takeover years
-    ppool <- ppool %>% mutate(takyear = 0)
-    for (k in seq_len(n_ep)) {
-      ep    <- ep_subset[k, ]
-      cname <- unique(ple_data$country[ple_data$cid == ep$oid])[1]
-      is_multi <- nrow(ep_subset[ep_subset$iso == ep$iso, ]) > 1
-      label <- if (is_multi) paste0(cname, "_", ep$year) else cname
-      ppool$takyear[ppool$Level == label] <- ep$year
-    }
-    ppool <- ppool %>% filter(takyear > 0)
+  # Force factor order so legend matches line order top-to-bottom
+  gap_all$group <- factor(gap_all$group, levels = sapply(present_specs, `[[`, "label"))
 
-    # Attach actual lgfstgdp, index to takeover year
-    ppool <- ppool %>% mutate(calyear = takyear + Time)
-    ppool_actual <- ple_data %>%
-      select(cid, year, country) %>%
-      mutate(lgfstgdp = log(ple_data$fstgdp))
-
-    # Average across episodes
-    ppool_avg <- ppool %>%
-      group_by(Time) %>%
-      summarise(
-        Estimate    = mean(Estimate,    na.rm = TRUE),
-        lower_bound = mean(lower_bound, na.rm = TRUE),
-        upper_bound = mean(upper_bound, na.rm = TRUE),
-        .groups = "drop"
-      )
-
-    ppool_avg
-  }, error = function(e) {
-    cat("  multisynth error:", conditionMessage(e), "\n")
-    NULL
-  })
-}
-
-save_multisynth_figure <- function(outpath, ppool_avg, subset_label) {
-  if (is.null(ppool_avg) || nrow(ppool_avg) == 0) {
-    cat("  No multisynth data — skipping figure\n")
-    return(invisible(NULL))
-  }
-
-  p <- ggplot(ppool_avg) +
-    geom_ribbon(aes(x = Time, ymin = lower_bound, ymax = upper_bound),
-                fill = "grey85", alpha = 0.8) +
-    geom_line(aes(x = Time, y = Estimate,
-                  colour = "Auth-pop gap (avg.)",
-                  linetype = "Auth-pop gap (avg.)",
-                  size    = "Auth-pop gap (avg.)")) +
-    geom_hline(yintercept = 0, linetype = "dashed", size = 0.2) +
-    geom_vline(xintercept = 0, linetype = "dashed", size = 0.2) +
-    scale_colour_manual(name = '', values = c("Auth-pop gap (avg.)" = "blue")) +
-    scale_linetype_manual(name = '', values = c("Auth-pop gap (avg.)" = "solid")) +
-    scale_size_manual(name = '', values = c("Auth-pop gap (avg.)" = 0.4)) +
+  p <- ggplot(gap_all, aes(x = ti, y = gap * 100,
+                            colour   = group,
+                            linetype = group,
+                            linewidth = group)) +
+    geom_hline(yintercept = 0, linetype = "dashed", colour = "black", linewidth = 0.2) +
+    geom_vline(xintercept = 0, linetype = "dashed", colour = "black", linewidth = 0.2) +
+    geom_line() +
+    scale_colour_manual(name = NULL, values = col_vals) +
+    scale_linetype_manual(name = NULL, values = lty_vals) +
+    scale_linewidth_manual(name = NULL, values = size_vals) +
     scale_x_continuous(breaks = seq(-15, 15, 5), expand = c(0.02, 0.02)) +
-    labs(title = paste0("Pooled SCM: ", subset_label), x = "", y = "") +
-    scm_theme()
+    scale_y_continuous(
+      breaks = c(-30, -20, -10, 0, 10, 20),
+      labels = c("-30%", "-20%", "-10%", "0%", "+10%", "+20%"),
+      expand = c(0.02, 0.02)
+    ) +
+    labs(
+      title = title_str,
+      x     = "Years relative to takeover",
+      y     = "Average Doppelganger Gap"
+    ) +
+    guides(
+      colour    = guide_legend(ncol = 1, keyheight = 1.4,
+                               override.aes = list(fill = NA, linewidth = 0.7)),
+      linetype  = guide_legend(ncol = 1, keyheight = 1.4),
+      linewidth = "none"
+    ) +
+    scm_theme() +
+    theme(
+      legend.position  = "right",
+      legend.text      = element_text(size = 7),
+      legend.key.width = unit(2.0, "cm"),
+      legend.spacing.y = unit(0.4, "cm"),
+      plot.title       = element_text(size = 9, hjust = 0.5),
+      axis.title       = element_text(size = 7)
+    )
 
-  pdf(outpath, width = 10 / 2.54, height = 8 / 2.54)
-  print(p)
-  dev.off()
+  p
 }
 
-for (sname in names(subsets)) {
-  ep_sub <- subsets[[sname]]
-  cat("\nSubset:", sname, "(N =", nrow(ep_sub), ")\n")
-  tryCatch({
-    ppool_avg <- run_multisynth_subset(ep_sub, sname)
-    outpath <- file.path("figures", paste0("FigureAP10_", sname, ".pdf"))
-    save_multisynth_figure(outpath, ppool_avg, sname)
-    cat("Saved:", outpath, "\n")
-  }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
-}
+cat("\n\n========== FIGURE AP9 (four-group comparison, main paper) ==========\n")
+
+tryCatch({
+
+  main_specs <- list(
+    list(key = "strict",     label = paste0("Strict auth-pop (N=",  nrow(filter(episodes, auth_strict == 1)),               ")"), col = "darkred",   lty = "solid"),
+    list(key = "broad",      label = paste0("Broad auth-pop (N=",   nrow(filter(episodes, auth_broad  == 1)),               ")"), col = "red",        lty = "longdash"),
+    list(key = "nonauthpop", label = paste0("Non-auth-pop (N=",     nrow(filter(episodes, auth_broad  == 0)),               ")"), col = "steelblue",  lty = "dotdash"),
+    list(key = "fst_full",   label = paste0("FST full (N=",         nrow(filter(episodes, !(iso == "HUN" & year == 2010))), ")"), col = "grey50",     lty = "twodash")
+  )
+
+  p_main <- build_ap9_figure(main_specs,
+               "Average doppelganger gap by subset")
+
+  if (!is.null(p_main)) {
+    outpath_ap9 <- file.path("figures", "FigureAP9.pdf")
+    pdf(outpath_ap9, width = 13 / 2.54, height = 10 / 2.54)
+    print(p_main)
+    dev.off()
+    cat("Saved:", outpath_ap9, "(", file.size(outpath_ap9), "bytes)\n")
+  }
+
+}, error = function(e) cat("AP9 main error:", conditionMessage(e), "\n"))
+
+cat("\n\n========== FIGURE AP9-noECU (no-Ecuador robustness, appendix) ==========\n")
+
+tryCatch({
+
+  noecu_specs <- list(
+    list(key = "strict_noecuador",     label = paste0("Strict, no Ecuador (N=",        nrow(filter(episodes, auth_strict == 1, iso != "ECU")), ")"), col = "darkred",  lty = "solid"),
+    list(key = "broad_noecuador",      label = paste0("Broad, no Ecuador (N=",         nrow(filter(episodes, auth_broad  == 1, iso != "ECU")), ")"), col = "red",       lty = "longdash"),
+    list(key = "nonauthpop",           label = paste0("Non-auth-pop (N=",              nrow(filter(episodes, auth_broad  == 0)),               ")"), col = "steelblue", lty = "dotdash"),
+    list(key = "fst_full",             label = paste0("FST full (N=",                  nrow(filter(episodes, !(iso == "HUN" & year == 2010))), ")"), col = "grey50",    lty = "twodash")
+  )
+
+  p_noecu <- build_ap9_figure(noecu_specs,
+               "Average doppelganger gap — no Ecuador robustness")
+
+  if (!is.null(p_noecu)) {
+    outpath_ap9noecu <- file.path("figures", "FigureAP9_noecuador.pdf")
+    pdf(outpath_ap9noecu, width = 13 / 2.54, height = 10 / 2.54)
+    print(p_noecu)
+    dev.off()
+    cat("Saved:", outpath_ap9noecu, "(", file.size(outpath_ap9noecu), "bytes)\n")
+  }
+
+}, error = function(e) cat("AP9 noECU error:", conditionMessage(e), "\n"))
+
+cat("\n=== Figure AP9 complete ===\n")
 
 # ============================================================
 # FIGURES AP11–AP14 — Alternative Outcome Variables
@@ -1049,13 +771,16 @@ run_altoutcome_subset <- function(ep_subset, outcome_var, subset_label) {
   for (k in seq_len(n_ep)) {
     ep    <- ep_subset[k, ]
     Oldc  <- ep$oid
-    Trea  <- ep$nid
     Year  <- ep$year
     Left  <- ep$left
     Case  <- paste(ep$nid, ep$year, sep = ".")
     fr1   <- ep$fr1
     fr2   <- ep$fr2
     fr3   <- ep$fr3
+    fr4   <- if ("fr4" %in% names(ep) && !is.na(ep$fr4)) ep$fr4 else 30
+    ep_period_pre  <- seq(0, fr3, 1)
+    ep_fr4_run     <- min(fr3 + 15, fr4)   # alt-outcomes always use 15-year horizon
+    ep_period_post <- (fr3 + 1):ep_fr4_run
 
     try({
       data <- ple[ple$year >= Year - sta & ple$year <= Year + 15, ]
@@ -1084,11 +809,14 @@ run_altoutcome_subset <- function(ep_subset, outcome_var, subset_label) {
         mutate(d = var - ivar, t = year - Year + 15)
       data  <- transform(data, index = as.numeric(factor(country)))
 
+      # Dynamic treated-unit index
+      Trea <- data$index[data$cid == Oldc][1]
+
       df <- scdata(
         df = data, features = features, constant = constant,
         cov.adj = cov.adj, cointegrated.data = cointegrated.data,
         id.var = "index", time.var = "t", outcome.var = "d",
-        period.pre = period.pre, period.post = period.post,
+        period.pre = ep_period_pre, period.post = ep_period_post,
         unit.tr = Trea, unit.co = unique(data$index)[-Trea]
       )
       result <- scpi(
@@ -1101,10 +829,10 @@ run_altoutcome_subset <- function(ep_subset, outcome_var, subset_label) {
       )
 
       y.fit <- rbind(result$est.results$Y.pre.fit, result$est.results$Y.post.fit)
-      yfit  <- data.frame(t = c(fr1:fr2, fr3:30), yfit = c(y.fit))
+      yfit  <- data.frame(t = c(fr1:fr2, fr3:ep_fr4_run), yfit = c(y.fit))
       y.act <- rbind(result$data$Y.pre, result$data$Y.post)
       yact  <- data.frame(
-        t = c(period.pre, period.post), yact = c(y.act),
+        t = c(ep_period_pre, ep_period_post), yact = c(y.act),
         case = Case, left = Left
       )
       ys <- merge(yact, yfit, by = "t", all = TRUE)
@@ -1112,11 +840,11 @@ run_altoutcome_subset <- function(ep_subset, outcome_var, subset_label) {
       ci <- extract_ci(result)
       cis <- if (!is.null(ci)) {
         data.frame(
-          t = period.post,
+          t = ep_period_post,
           sclgauss = c(ci$scl.gauss), scrgauss = c(ci$scr.gauss)
         )
       } else {
-        data.frame(t = period.post,
+        data.frame(t = ep_period_post,
                    sclgauss = NA_real_, scrgauss = NA_real_)
       }
       series <- merge(ys, cis, by = "t", all = TRUE)
@@ -1182,35 +910,12 @@ make_altoutcome_panel <- function(fd, outcome_label, col = "blue", ylims = NULL,
     scm_theme()
 }
 
-# Figure AP11: Gini + Labor share
-for (sname in names(subsets)) {
-  ep_sub <- subsets[[sname]]
-  cat("\nFigureAP11 subset:", sname, "\n")
-  tryCatch({
-    fd_gini  <- run_altoutcome_subset(ep_sub, "gini",       paste0(sname, "_gini"))
-    fd_labor <- run_altoutcome_subset(ep_sub, "laborshare", paste0(sname, "_labor"))
-
-    outpath <- file.path("figures", paste0("FigureAP11_", sname, ".pdf"))
-    pdf(outpath, width = 16 / 2.54, height = 8 / 2.54)
-    grid::grid.newpage()
-    grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 2)))
-    if (!is.null(fd_gini))
-      print(make_altoutcome_panel(fd_gini, "Gini index",
-                                  ylims = c(-4, 4),
-                                  ylabs = c("-4 pt", "-3 pt", "-2 pt", "-1 pt",
-                                            "0", "+1 pt", "+2 pt", "+3 pt", "+4 pt")),
-            vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 1))
-    if (!is.null(fd_labor))
-      print(make_altoutcome_panel(fd_labor, "Labor share",
-                                  ylims = c(-4, 4)),
-            vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 2))
-    dev.off()
-    cat("Saved:", outpath, "(", file.size(outpath), "bytes)\n")
-  }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
-}
+# Alt-outcomes run on the original 4 authpop subsets only
+# (nonauthpop and fst_full are not needed for the alternative-outcome appendix)
+subsets_altout <- subsets[c("strict", "broad", "strict_noecuador", "broad_noecuador")]
 
 # Figure AP12: Trade outcomes
-for (sname in names(subsets)) {
+for (sname in names(subsets_altout)) {
   ep_sub <- subsets[[sname]]
   cat("\nFigureAP12 subset:", sname, "\n")
   tryCatch({
@@ -1237,7 +942,7 @@ for (sname in names(subsets)) {
 }
 
 # Figure AP13: Macro stability
-for (sname in names(subsets)) {
+for (sname in names(subsets_altout)) {
   ep_sub <- subsets[[sname]]
   cat("\nFigureAP13 subset:", sname, "\n")
   tryCatch({
@@ -1260,8 +965,33 @@ for (sname in names(subsets)) {
   }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
 }
 
+# Figure AP13-noVEN: Macro stability, Venezuela excluded (removes hyperinflation outlier)
+subsets_noven <- lapply(subsets_altout, function(ep_sub) ep_sub[ep_sub$iso != "VEN", ])
+for (sname in names(subsets_noven)) {
+  ep_sub <- subsets_noven[[sname]]
+  cat("\nFigureAP13noVEN subset:", sname, "\n")
+  tryCatch({
+    fd_debt  <- run_altoutcome_subset(ep_sub, "debtgdp",   paste0(sname, "_debt_noven"))
+    fd_infl  <- run_altoutcome_subset(ep_sub, "inflation",  paste0(sname, "_infl_noven"))
+
+    outpath <- file.path("figures", paste0("FigureAP13noVEN_", sname, ".pdf"))
+    pdf(outpath, width = 16 / 2.54, height = 8 / 2.54)
+    grid::grid.newpage()
+    grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 2)))
+    if (!is.null(fd_debt))
+      print(make_altoutcome_panel(fd_debt, "Debt/GDP"),
+            vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 1))
+    if (!is.null(fd_infl))
+      print(make_altoutcome_panel(fd_infl, "Inflation (excl. Venezuela)",
+                                  col = "darkred"),
+            vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 2))
+    dev.off()
+    cat("Saved:", outpath, "(", file.size(outpath), "bytes)\n")
+  }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
+}
+
 # Figure AP14: Institutional quality
-for (sname in names(subsets)) {
+for (sname in names(subsets_altout)) {
   ep_sub <- subsets[[sname]]
   cat("\nFigureAP14 subset:", sname, "\n")
   tryCatch({
@@ -1277,4 +1007,4 @@ for (sname in names(subsets)) {
   }, error = function(e) cat("Error:", conditionMessage(e), "\n"))
 }
 
-cat("\n=== ranscm_authpop.R complete (all figures AP6–AP14) ===\n")
+cat("\n=== ranscm_authpop.R complete (figures AP6–AP9, AP12–AP14, AP13-noVEN) ===\n")

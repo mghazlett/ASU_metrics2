@@ -7,8 +7,6 @@
   subsets.
 
   Outputs (in figures/ and tables/ relative to authpop_extension/):
-    TableAP1_strict.tex     — episode list, strict subset (N=9)
-    TableAP1_broad.tex      — episode list, broad subset (N=13)
     FigureAP3_strict.pdf    — growth gap, strict
     FigureAP3_broad.pdf     — growth gap, broad
     FigureAP3_strict_noecuador.pdf
@@ -42,212 +40,6 @@ graph set window fontface "Times New Roman"
 adopath ++ "../programs/adosw"
 
 /*===========================================================================
-  FIGURE AP1 — Authoritarian Episodes in Context
-  Method: Descriptive chart. Shows all 28 FST core populist episodes with
-  each episode marked as: strict authpop (dark), broad-only authpop (grey),
-  or non-auth (white). Episodes plotted by takeover year on x-axis.
-  Analogous context figure to FST Figure 1 (historical wave).
-===========================================================================*/
-
-capture {
-
-import delimited using "data/authpop_episodes.csv", varnames(1) clear
-gen type = 3              // non-auth (default)
-replace type = 2 if auth_broad == 1 & auth_strict == 0   // broad-only
-replace type = 1 if auth_strict == 1                      // strict
-
-gen labstr = iso + " " + string(year)
-gen typelabel = "Non-authoritarian"   if type == 3
-replace typelabel = "Broad (became auth.)"  if type == 2
-replace typelabel = "Strict (auth. at takeover)" if type == 1
-
-gen decade = floor(year/10)*10
-gen n = _n
-
-* Horizontal lollipop: episode year on x, each episode as a row
-* Sort by year
-sort year
-gen row = _n
-
-twoway ///
-    (scatter row year if type == 3, msymbol(circle_hollow) mcolor(gs10) msize(medium)) ///
-    (scatter row year if type == 2, msymbol(circle) mcolor(gs7) msize(medium)) ///
-    (scatter row year if type == 1, msymbol(circle) mcolor(black) msize(medium) ///
-        mlabel(labstr) mlabsize(vsmall) mlabgap(tiny) mlabposition(3)) ///
-    , ///
-    xlabel(1940 1950 1960 1970 1980 1990 2000 2010, labsize(small)) ///
-    ytitle("") xtitle("Takeover year", size(small)) ///
-    ylabel(none) ///
-    legend(order(1 "Non-auth. (19 episodes)" 2 "Broad-only (+4 ep.)" 3 "Strict auth. (9 episodes)") ///
-           rows(1) size(small) region(lcolor(white))) ///
-    title("All 28 FST core populist episodes by authoritarian classification", ///
-          size(medsmall) color(black)) ///
-    graphregion(color(white)) scheme(s1mono) xsize(14) ysize(8)
-gr export "figures/FigureAP1.pdf", replace
-
-clear
-
-}
-
-/*===========================================================================
-  FIGURE AP2 — Episode Timeline (Stripplot)
-  Method: Descriptive stripplot. Shows authpop episodes by country, colored
-  by left/right wing. Strict subset in solid markers, broad-only in hollow.
-  Analogous to FST Figure 2.
-===========================================================================*/
-
-capture {
-
-import delimited using "data/authpop_episodes.csv", varnames(1) clear
-
-* Keep only authpop episodes
-keep if auth_broad == 1
-
-gen subtype = 1 if auth_strict == 1                        // strict
-replace subtype = 2 if auth_broad == 1 & auth_strict == 0  // broad-only
-
-* Country label for y-axis (with year)
-gen leaderlabel = leader
-
-* Use twoway scatter as a stripplot substitute
-gen lr = "Left" if left == 1
-replace lr = "Right" if left == 0
-
-gen cntry_order = .
-* Sort countries alphabetically for consistent y-axis
-gen countryname = ""
-replace countryname = "Argentina 1946"  if iso == "ARG" & year == 1946
-replace countryname = "Argentina 1973"  if iso == "ARG" & year == 1973
-replace countryname = "Bolivia 1952"    if iso == "BOL"
-replace countryname = "Brazil 1951"     if iso == "BRA"
-replace countryname = "Chile 1952"      if iso == "CHL"
-replace countryname = "Ecuador 1952"    if iso == "ECU" & year == 1952
-replace countryname = "Ecuador 1960"    if iso == "ECU" & year == 1960
-replace countryname = "Ecuador 1968"    if iso == "ECU" & year == 1968
-replace countryname = "India 1966"      if iso == "IND"
-replace countryname = "Mexico 1970"     if iso == "MEX"
-replace countryname = "Peru 1990"       if iso == "PER"
-replace countryname = "Turkey 2003"     if iso == "TUR"
-replace countryname = "Venezuela 1999"  if iso == "VEN"
-
-* y position
-gen ypos = 14 - _n + 1
-
-twoway ///
-    (scatter ypos year if left == 1 & auth_strict == 1, ///
-             msymbol(square) mcolor(black) msize(medlarge) ///
-             mlabel(leader) mlabsize(vsmall) mlabgap(small)) ///
-    (scatter ypos year if left == 0 & auth_strict == 1, ///
-             msymbol(diamond) mcolor(black) msize(medlarge) ///
-             mlabel(leader) mlabsize(vsmall) mlabgap(small)) ///
-    (scatter ypos year if left == 1 & auth_broad == 1 & auth_strict == 0, ///
-             msymbol(square_hollow) mcolor(gs5) msize(medlarge) ///
-             mlabel(leader) mlabsize(vsmall) mlabgap(small)) ///
-    (scatter ypos year if left == 0 & auth_broad == 1 & auth_strict == 0, ///
-             msymbol(diamond_hollow) mcolor(gs5) msize(medlarge) ///
-             mlabel(leader) mlabsize(vsmall) mlabgap(small)) ///
-    , ///
-    xlabel(1940 1950 1960 1970 1980 1990 2000 2010, labsize(small)) ///
-    ylabel(none) ///
-    xtitle("Takeover year", size(small)) ytitle("") ///
-    legend(order(1 "Strict, left" 2 "Strict, right" ///
-                 3 "Broad-only, left" 4 "Broad-only, right") ///
-           rows(2) size(small) region(lcolor(white))) ///
-    title("Authoritarian-populist episodes, 1940-2010", size(medsmall)) ///
-    graphregion(color(white)) scheme(s1mono) xsize(14) ysize(8)
-gr export "figures/FigureAP2.pdf", replace
-
-clear
-
-}
-
-/*===========================================================================
-  TABLE AP1 — Episode Lists (strict and broad)
-  Method: manually curated descriptive table (no statistical output).
-  Lists the authpop subset episodes with country, year, leader, ideology,
-  and regime classification.
-===========================================================================*/
-
-capture {
-
-* --- Strict subset (N=9) ---
-file open t using "tables/TableAP1_strict.tex", write replace text
-file write t `"\def\sym#1{\ifmmode^{#1}\else\(\^{#1}\)\fi}"' _n
-file write t `"\setlength{\tabcolsep}{5pt}"' _n
-file write t `"{\footnotesize"' _n
-file write t `"\begin{longtable}{rp{2.2cm}p{2.4cm}p{3.2cm}p{3.8cm}}"' _n
-file write t `"\caption*{\textbf{Table AP1a---Authoritarian-Populist Episodes (Strict Subset), N=9}} \\"' _n
-file write t `"\hline\hline"' _n
-file write t `"No. & Country & Year & Leader & Regime at takeover \\"' _n
-file write t `"\hline"' _n
-file write t `"\endfirsthead"' _n
-file write t `"\hline\hline"' _n
-file write t `"No. & Country & Year & Leader & Regime at takeover \\"' _n
-file write t `"\hline"' _n
-file write t `"\endhead"' _n
-file write t `"\hline"' _n
-file write t `"\endfoot"' _n
-file write t `"1. & Argentina & 1946 & Per\'on (L) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"2. & Argentina & 1973 & C\'ampora/Per\'on (L) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"3. & Bolivia & 1952 & Estenssoro (L) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"4. & Brazil & 1951 & Vargas (L) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"5. & Chile & 1952 & Ib\'a\~nez (L) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"6. & Ecuador & 1952 & Velasco Ibarra I (R) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"7. & Ecuador & 1960 & Velasco Ibarra II (R) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"8. & Ecuador & 1968 & Velasco Ibarra III (R) & Electoral autocracy (V-Dem=1) \\"' _n
-file write t `"9. & Mexico & 1970 & Echeverr\'ia (L) & Electoral autocracy (PRI hegemonic; V-Dem=1) \\"' _n
-file write t `"\hline\hline"' _n
-file write t `"\multicolumn{5}{p{14cm}}{\textit{Notes:} Strict subset = FST populist episodes in electoral or closed autocracies at the takeover year (V-Dem \texttt{v2x\_regime} $\leq 1$). L = left-wing, R = right-wing (per FST coding). Ecuador comprises three non-consecutive spells of the same leader; see robustness checks.} \\"' _n
-file write t `"\end{longtable}"' _n
-file write t `"}"' _n
-file close t
-
-* --- Broad subset (N=13) ---
-file open t using "tables/TableAP1_broad.tex", write replace text
-file write t `"\def\sym#1{\ifmmode^{#1}\else\(\^{#1}\)\fi}"' _n
-file write t `"\setlength{\tabcolsep}{5pt}"' _n
-file write t `"{\footnotesize"' _n
-file write t `"\begin{longtable}{rp{2.2cm}p{2.4cm}p{3.2cm}p{3.8cm}}"' _n
-file write t `"\caption*{\textbf{Table AP1b---Authoritarian-Populist Episodes (Broad Subset), N=13}} \\"' _n
-file write t `"\hline\hline"' _n
-file write t `"No. & Country & Year & Leader & Auth. classification \\"' _n
-file write t `"\hline"' _n
-file write t `"\endfirsthead"' _n
-file write t `"\hline\hline"' _n
-file write t `"No. & Country & Year & Leader & Auth. classification \\"' _n
-file write t `"\hline"' _n
-file write t `"\endhead"' _n
-file write t `"\hline"' _n
-file write t `"\endfoot"' _n
-file write t `"\multicolumn{5}{l}{\textit{Panel A. Strict subset (autocracy at takeover, N=9)}} \\"' _n
-file write t `"\hline"' _n
-file write t `"1. & Argentina & 1946 & Per\'on (L) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"2. & Argentina & 1973 & C\'ampora/Per\'on (L) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"3. & Bolivia & 1952 & Estenssoro (L) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"4. & Brazil & 1951 & Vargas (L) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"5. & Chile & 1952 & Ib\'a\~nez (L) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"6. & Ecuador & 1952 & Velasco Ibarra I (R) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"7. & Ecuador & 1960 & Velasco Ibarra II (R) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"8. & Ecuador & 1968 & Velasco Ibarra III (R) & Electoral autocracy at takeover (V-Dem=1) \\"' _n
-file write t `"9. & Mexico & 1970 & Echeverr\'ia (L) & Electoral autocracy (PRI hegemonic; V-Dem=1) \\"' _n
-file write t `"\hline"' _n
-file write t `"\multicolumn{5}{l}{\textit{Panel B. Additional broad episodes (became autocratic during tenure, N=4)}} \\"' _n
-file write t `"\hline"' _n
-file write t `"10. & India & 1966 & Gandhi I.\ (L) & Elected in democracy; Emergency 1975 (V-Dem=1) \\"' _n
-file write t `"11. & Peru & 1990 & Fujimori (R) & Elected in democracy; autogolpe 1992 (V-Dem=0) \\"' _n
-file write t `"12. & Turkey & 2003 & Erdo\u{g}an (R) & Elected in democracy; democratic backsliding 2013 (V-Dem=1) \\"' _n
-file write t `"13. & Venezuela & 1999 & Ch\'avez (L) & Elected in democracy; competitive authoritarianism 2002 (V-Dem=1) \\"' _n
-file write t `"\hline\hline"' _n
-file write t `"\multicolumn{5}{p{14cm}}{\textit{Notes:} Broad subset adds four episodes where the populist took power in a democracy but V-Dem \texttt{v2x\_regime} subsequently fell to $\leq 1$ during their tenure. L = left-wing, R = right-wing (per FST coding).} \\"' _n
-file write t `"\end{longtable}"' _n
-file write t `"}"' _n
-file close t
-
-clear
-
-}
-
-/*===========================================================================
   FIGURE AP3 — Growth Gap Bar Chart
   Method: Country-level benchmark (c5/c15) = treated country's own mean
   growth rate minus the 5/15-year post-period mean. Global benchmark
@@ -266,6 +58,8 @@ program define authpop_fig3
     * dataset is optional; defaults to data/authpop_dataset
     args subset_flag subset_label outpath dataset
     if "`dataset'" == "" local dataset "data/authpop_dataset"
+    * Programs do not inherit caller locals — define tmp explicitly here
+    local tmp "data/_work/"
 
     use `"`dataset'"', clear
 
@@ -403,13 +197,34 @@ program define authpop_fig3
     clear
 end
 
+* Helper: for non-authpop and full subsets the flag variable is not a simple
+* named binary; create disposable indicator variables before each call.
+
+* MAIN 4-panel: strict, broad, nonauthpop, full
 capture {
-    authpop_fig3 auth_strict  "Strict (N=9)"   "figures/FigureAP3_strict.pdf"
-    authpop_fig3 auth_broad   "Broad (N=13)"   "figures/FigureAP3_broad.pdf"
+    authpop_fig3 auth_strict       "Strict (N=9)"          "figures/FigureAP3_strict.pdf"
+    authpop_fig3 auth_broad        "Broad (N=14)"          "figures/FigureAP3_broad.pdf"
 }
 
-* No-Ecuador robustness: create dataset, then call authpop_fig3 with it
+* nonauthpop subset: episodes where auth_broad==0 at their takeover year
+capture {
+    use data/authpop_dataset, clear
+    gen auth_nonauthpop_flag = (auth_broad == 0)
+    save `tmp'_authpop_nonauthpop, replace
+    authpop_fig3 auth_nonauthpop_flag "Non-auth-pop (N=15)" ///
+        "figures/FigureAP3_nonauthpop.pdf" "`tmp'_authpop_nonauthpop"
+}
 
+* FST full sample: original 28 episodes (atakeover_full flag, excludes HUN)
+capture {
+    use data/authpop_dataset, clear
+    * atakeover_full already saved as a binary takeover indicator
+    save `tmp'_authpop_full, replace
+    authpop_fig3 atakeover_full "FST Full (N=28)" ///
+        "figures/FigureAP3_full.pdf" "`tmp'_authpop_full"
+}
+
+* APPENDIX: no-Ecuador robustness (strict & broad only)
 * Step 1: build the no-Ecuador dataset file once
 capture {
     use data/authpop_dataset, clear
@@ -753,6 +568,287 @@ esttab si15 fe15 ma15 using "tables/TableAP2_`subset'.tex", ///
 clear
 
 }
+
+}
+
+/*===========================================================================
+  TABLE AP2c — OLS/FE Regression Table, Non-authpop subset (N=15)
+  Same specification as TableAP2 strict/broad but for the 15 FST populist
+  episodes that do NOT meet the authoritarian classification threshold.
+  Serves as the comparison group for the main authpop results.
+===========================================================================*/
+
+capture {
+
+use data/authpop_dataset, clear
+
+label var Post_5_nonauthpop  "Non-auth-pop leader (5-yr)"
+label var Post_15_nonauthpop "Non-auth-pop leader (15-yr)"
+
+tsset cid year
+gen lgfstgdp  = log(fstgdp)
+gen rgdppc_gr = (lgfstgdp - l1.lgfstgdp) * 100
+
+estimates clear
+
+eststo si05: qui reg rgdppc_gr Post_5_nonauthpop if year >= 1946, robust
+eststo fe05: qui reg rgdppc_gr i.year i.cid Post_5_nonauthpop if year >= 1946, robust
+eststo ma05: qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_nonauthpop if year >= 1946, robust
+
+eststo si15: qui reg rgdppc_gr Post_15_nonauthpop if year >= 1946, robust
+eststo fe15: qui reg rgdppc_gr i.year i.cid Post_15_nonauthpop if year >= 1946, robust
+eststo ma15: qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_nonauthpop if year >= 1946, robust
+
+esttab si05 fe05 ma05 using "tables/TableAP2_nonauthpop.tex", ///
+    keep(*Post_5*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("5-year aftermath — non-authpop subset (N=15)") ///
+    nonotes label eqlabels(none) mlabels(none) replace
+
+esttab si15 fe15 ma15 using "tables/TableAP2_nonauthpop.tex", ///
+    keep(*Post_15*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("15-year aftermath — non-authpop subset (N=15)") ///
+    nonotes label eqlabels(none) mlabels(none) append
+
+clear
+
+}
+
+/*===========================================================================
+  TABLE AP2 (full sample) — OLS/FE Regression, FST full sample (N=28)
+  Same specification as AP2 strict/broad but for all 28 FST analytical episodes.
+===========================================================================*/
+
+capture {
+
+use data/authpop_dataset, clear
+
+label var Post_5_full  "FST full sample (5-yr)"
+label var Post_15_full "FST full sample (15-yr)"
+
+tsset cid year
+gen lgfstgdp  = log(fstgdp)
+gen rgdppc_gr = (lgfstgdp - l1.lgfstgdp) * 100
+
+estimates clear
+
+eststo si05: qui reg rgdppc_gr Post_5_full if year >= 1946, robust
+eststo fe05: qui reg rgdppc_gr i.year i.cid Post_5_full if year >= 1946, robust
+eststo ma05: qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_full if year >= 1946, robust
+
+eststo si15: qui reg rgdppc_gr Post_15_full if year >= 1946, robust
+eststo fe15: qui reg rgdppc_gr i.year i.cid Post_15_full if year >= 1946, robust
+eststo ma15: qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_full if year >= 1946, robust
+
+esttab si05 fe05 ma05 using "tables/TableAP2_full.tex", ///
+    keep(*Post_5*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("5-year aftermath — FST full sample (N=28)") ///
+    nonotes label eqlabels(none) mlabels(none) replace
+
+esttab si15 fe15 ma15 using "tables/TableAP2_full.tex", ///
+    keep(*Post_15*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("15-year aftermath — FST full sample (N=28)") ///
+    nonotes label eqlabels(none) mlabels(none) append
+
+clear
+
+}
+
+/*===========================================================================
+  TABLE 2 (COMBINED) — OLS/FE for all 4 subsets in one 12-column table
+  Columns: (1)-(3) Strict, (4)-(6) Broad, (7)-(9) Non-auth-pop, (10)-(12) Full
+  Within each group: OLS / Year FE / Country+Year FE
+  Panels: A = 5-year, B = 15-year
+===========================================================================*/
+
+capture {
+
+use data/authpop_dataset, clear
+
+tsset cid year
+gen lgfstgdp  = log(fstgdp)
+gen rgdppc_gr = (lgfstgdp - l1.lgfstgdp) * 100
+
+label var Post_5_strict      "Post-takeover (5-yr)"
+label var Post_15_strict     "Post-takeover (15-yr)"
+label var Post_5_broad       "Post-takeover (5-yr)"
+label var Post_15_broad      "Post-takeover (15-yr)"
+label var Post_5_nonauthpop  "Post-takeover (5-yr)"
+label var Post_15_nonauthpop "Post-takeover (15-yr)"
+label var Post_5_full        "Post-takeover (5-yr)"
+label var Post_15_full       "Post-takeover (15-yr)"
+
+estimates clear
+
+* Panel A: 5-year
+eststo s05_ols: qui reg rgdppc_gr Post_5_strict      if year >= 1946, robust
+eststo s05_yfe: qui reg rgdppc_gr i.year i.cid Post_5_strict      if year >= 1946, robust
+eststo s05_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_strict if year >= 1946, robust
+
+eststo b05_ols: qui reg rgdppc_gr Post_5_broad       if year >= 1946, robust
+eststo b05_yfe: qui reg rgdppc_gr i.year i.cid Post_5_broad       if year >= 1946, robust
+eststo b05_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_broad if year >= 1946, robust
+
+eststo n05_ols: qui reg rgdppc_gr Post_5_nonauthpop  if year >= 1946, robust
+eststo n05_yfe: qui reg rgdppc_gr i.year i.cid Post_5_nonauthpop  if year >= 1946, robust
+eststo n05_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_nonauthpop if year >= 1946, robust
+
+eststo f05_ols: qui reg rgdppc_gr Post_5_full        if year >= 1946, robust
+eststo f05_yfe: qui reg rgdppc_gr i.year i.cid Post_5_full        if year >= 1946, robust
+eststo f05_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_5_full if year >= 1946, robust
+
+* Panel B: 15-year
+eststo s15_ols: qui reg rgdppc_gr Post_15_strict     if year >= 1946, robust
+eststo s15_yfe: qui reg rgdppc_gr i.year i.cid Post_15_strict     if year >= 1946, robust
+eststo s15_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_strict if year >= 1946, robust
+
+eststo b15_ols: qui reg rgdppc_gr Post_15_broad      if year >= 1946, robust
+eststo b15_yfe: qui reg rgdppc_gr i.year i.cid Post_15_broad      if year >= 1946, robust
+eststo b15_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_broad if year >= 1946, robust
+
+eststo n15_ols: qui reg rgdppc_gr Post_15_nonauthpop if year >= 1946, robust
+eststo n15_yfe: qui reg rgdppc_gr i.year i.cid Post_15_nonauthpop if year >= 1946, robust
+eststo n15_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_nonauthpop if year >= 1946, robust
+
+eststo f15_ols: qui reg rgdppc_gr Post_15_full       if year >= 1946, robust
+eststo f15_yfe: qui reg rgdppc_gr i.year i.cid Post_15_full       if year >= 1946, robust
+eststo f15_fe:  qui reg rgdppc_gr i.year i.cid L1.institutions ///
+    L(1/5).bankcrisis L(1/5).currcrisis L(1/5).debtcrisis ///
+    L1.tradegdp L1.inflation Post_15_full if year >= 1946, robust
+
+* Combined output: Panel A header, then Panel B
+esttab s05_ols s05_yfe s05_fe b05_ols b05_yfe b05_fe ///
+       n05_ols n05_yfe n05_fe f05_ols f05_yfe f05_fe ///
+    using "tables/Table2_combined.tex", ///
+    keep(*Post_5*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    mgroups("Strict (N=9)" "Broad (N=14)" "Non-auth-pop (N=15)" "FST Full (N=28)", ///
+            pattern(1 0 0 1 0 0 1 0 0 1 0 0) ///
+            prefix(\multicolumn{@span}{c}{) suffix(}) span erepeat(\cmidrule(lr){@span})) ///
+    mtitles("OLS" "Year FE" "Ctry+Year FE" "OLS" "Year FE" "Ctry+Year FE" ///
+            "OLS" "Year FE" "Ctry+Year FE" "OLS" "Year FE" "Ctry+Year FE") ///
+    nonotes label eqlabels(none) ///
+    prehead("\begin{adjustbox}{max width=\textwidth}" ///
+            "\begin{tabular}{l*{12}{c}}" ///
+            "\toprule" ///
+            "\multicolumn{13}{l}{\textit{Panel A: 5-year post-takeover window}} \\[2pt]") ///
+    posthead("\midrule") ///
+    prefoot("") ///
+    postfoot("\bottomrule" "\end{tabular}" "\end{adjustbox}") replace
+
+esttab s15_ols s15_yfe s15_fe b15_ols b15_yfe b15_fe ///
+       n15_ols n15_yfe n15_fe f15_ols f15_yfe f15_fe ///
+    using "tables/Table2_combined.tex", ///
+    keep(*Post_15*) se r2 b(2) se(2) obslast ///
+    starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    nonotes label eqlabels(none) mlabels(none) ///
+    prehead("\midrule" ///
+            "\multicolumn{13}{l}{\textit{Panel B: 15-year post-takeover window}} \\[2pt]") ///
+    posthead("") ///
+    prefoot("") ///
+    postfoot("\bottomrule" "\end{tabular}" "\end{adjustbox}") append
+
+clear
+
+}
+
+/*===========================================================================
+  TABLE AP9 — Joint regression: authpop (broad) vs. non-authpop
+  Tests H0: beta_authpop = beta_nonauthpop at 5- and 15-year horizons.
+  Both indicators enter the same regression; F-test p-value reported.
+  Columns: (1) OLS, (2) year FE, (3) country + year FE.
+  Panels: A = 5-year window, B = 15-year window.
+===========================================================================*/
+
+capture {
+
+use data/authpop_dataset, clear
+
+label var Post_5_broad       "Auth-pop broad (5-yr)"
+label var Post_15_broad      "Auth-pop broad (15-yr)"
+label var Post_5_nonauthpop  "Non-auth-pop (5-yr)"
+label var Post_15_nonauthpop "Non-auth-pop (15-yr)"
+
+tsset cid year
+gen lgfstgdp  = log(fstgdp)
+gen rgdppc_gr = (lgfstgdp - l1.lgfstgdp) * 100
+
+estimates clear
+
+* --- Panel A: 5-year window ---
+eststo j05_ols: qui reg rgdppc_gr Post_5_broad Post_5_nonauthpop ///
+    if year >= 1946, robust
+    test Post_5_broad = Post_5_nonauthpop
+    estadd scalar pval = r(p)
+
+eststo j05_yfe: qui reg rgdppc_gr i.year Post_5_broad Post_5_nonauthpop ///
+    if year >= 1946, robust
+    test Post_5_broad = Post_5_nonauthpop
+    estadd scalar pval = r(p)
+
+eststo j05_fe: qui reg rgdppc_gr i.year i.cid Post_5_broad Post_5_nonauthpop ///
+    if year >= 1946, robust
+    test Post_5_broad = Post_5_nonauthpop
+    estadd scalar pval = r(p)
+
+* --- Panel B: 15-year window ---
+eststo j15_ols: qui reg rgdppc_gr Post_15_broad Post_15_nonauthpop ///
+    if year >= 1946, robust
+    test Post_15_broad = Post_15_nonauthpop
+    estadd scalar pval = r(p)
+
+eststo j15_yfe: qui reg rgdppc_gr i.year Post_15_broad Post_15_nonauthpop ///
+    if year >= 1946, robust
+    test Post_15_broad = Post_15_nonauthpop
+    estadd scalar pval = r(p)
+
+eststo j15_fe: qui reg rgdppc_gr i.year i.cid Post_15_broad Post_15_nonauthpop ///
+    if year >= 1946, robust
+    test Post_15_broad = Post_15_nonauthpop
+    estadd scalar pval = r(p)
+
+* --- Output ---
+esttab j05_ols j05_yfe j05_fe using "tables/TableAP9.tex", ///
+    keep(Post_5_broad Post_5_nonauthpop) ///
+    se r2 b(2) se(2) obslast scalar("pval F-test p-val (broad=nonauthpop)") ///
+    sfmt(%6.3f) starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("Panel A. 5-year aftermath") ///
+    nonotes label eqlabels(none) ///
+    mtitles("OLS" "Year FE" "Country+Year FE") replace
+
+esttab j15_ols j15_yfe j15_fe using "tables/TableAP9.tex", ///
+    keep(Post_15_broad Post_15_nonauthpop) ///
+    se r2 b(2) se(2) obslast scalar("pval F-test p-val (broad=nonauthpop)") ///
+    sfmt(%6.3f) starlevels(* 0.1 ** 0.05 *** 0.01) ///
+    title("Panel B. 15-year aftermath") ///
+    nonotes label eqlabels(none) mlabels(none) append
+
+clear
 
 }
 
